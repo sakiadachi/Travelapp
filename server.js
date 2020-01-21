@@ -48,8 +48,8 @@ app.post('/addWeather', addWeather);
 function addWeather(req, res){
     console.log(req.body)
     NewEntry = {
-        temperature : req.body.temperature,
         date: req.body.date,
+        temperature : req.body.temp,
         userResponse: req.body.userResponse
     }
     
