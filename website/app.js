@@ -8,7 +8,7 @@ const units =  '&units=metric';
 
 
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = (d.getMonth()+1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
@@ -21,7 +21,7 @@ function performAction(e){
     // Add a data to POST request
     .then(function gotData(data){
         postData('http://localhost:8000/addWeather', {date: newDate,temp: data.main.temp, userResponse: userResponse});
-        updateUI()
+        updateUI('http://localhost:8000/all')
     });
 }
 /* Function to GET Web API Data*/

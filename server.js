@@ -49,7 +49,7 @@ function addWeather(req, res){
     console.log(req.body)
     NewEntry = {
         date: req.body.date,
-        temperature : req.body.temp,
+        temp : req.body.temp,
         userResponse: req.body.userResponse
     }
     
