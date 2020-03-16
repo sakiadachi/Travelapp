@@ -1,19 +1,26 @@
 body{
-    background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #f23557;
+    background: #f0d43a;
+    max-width: 90%;
+}
+/* Header */
+.title{
+    font-size: large;
 }
 
-#app{
-    display: grid;
+
+
+/* Body */
+/* #app{
+    display: grid; */
     /* grid-template-columns:  */
-    height:100vh;
+    /* height:100vh;
     color: #f0d43a;
     justify-content: center;
     grid-gap: auto;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
-}
+} */
 
 .holder{
 
@@ -108,3 +115,5 @@ button:focus {
     font-family: 'Oswald', sans-serif;
 
 } 
+
+/* Footer */
