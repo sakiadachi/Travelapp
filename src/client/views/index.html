@@ -22,33 +22,67 @@
     <section id="form">
         <div class="form">
             <div class="destination"></div>
-                <label for="destination">Destination: </label>
-                <input type="text" id="destination" placeholder="enter location">
-            </div>
-            <div class="date">
-                <label for="start">Start Date: </label>
-                <input type="date" id="start" name="trip-start" value="DD-MM-YYYY">
-                </br>
-            </div>
-          </div>
-            <button id="generate" type="submit"> Generate </button>
+            <label for="destination">My trip to: </label>
+            <input type="text" id="destination" placeholder="enter location">
+        </div>
+        <div class="date">
+            <label for="start">Departing: </label>
+            <input type="date" id="start" name="trip-start" value="DD-MM-YYYY">
+            </br>
+        </div>
+        </div>
+        <button id="generate" type="submit"> Generate </button>
     </section>
+
+    <div class="my-trips">
+        <h2>My Trips: </h2>
+    </div>
+
     <section id="entry">
         <div class="entry-img">
-            <h1>My Trips: </h1>
-            <img src="https://source.unsplash.com/random/200x200" alt="img" width="400px">
+            <img src="https://source.unsplash.com/random/200x200" alt="img" width="300px">
         </div>
-        <div id="entry-text">
-            <div id="place">
-                <h2>Paris</h2>
+        <div class="entry-text">
+            <div class="a">
+                <p>My trip to: </p>
+                <div id="place">
+                    <p>Paris</p>
+                </div>
             </div>
-            <div id="date">
-                <p>XX.XX.XXXX</p>
+
+            <div class="b">
+                <p>Departing: </p>
+                <div id="date">
+                    <p>XX.XX.XXXX</p>
+                </div>
             </div>
-            <div id="weather">
-                <p>Sunny</p>
-                <p>"Lstrud or in repa deserunt mollit anim id est laborum."</p>
-            </div>um 
+
+            <div class="c">
+                <p>flight info: </p>
+                <div id="flight info">
+                    <p>HND 03:00PM
+                        <br>Flight707 AAA AIR</p>
+                    <p>HND 03:00PM
+                        <br>Flight707 AAA AIR</p>
+                </div>
+            </div>
+
+            <div class="d">
+                <button class="save-trip">save trip</button>
+                <button class="remove-trip">remove trip</button>
+            </div>
+
+            <div class="e">
+                <div class="count-days"> is days away</div>
+            </div>
+
+            <div class="f">
+                <p>Typical weather for then is: </p>
+                <div id="weather">
+                    <p>Mostly cloudy</p>
+                    <p>High 33c, Low 10c</p>
+                </div>
+            </div>
         </div>
     </section>
 

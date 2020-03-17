@@ -1,17 +1,14 @@
 body{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 0.1fr 0.6fr 0.3fr 1fr 0.2fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 0px;
+    grid-template-columns: 30px repeat(2, 1fr) 30px;
+    grid-template-rows: 0.2fr 1fr 0.3fr 0.1fr 1fr 0.3fr;
     justify-content: center;
-    background: ;
     color: #333;
 }
 
 /* Header */
 header{
-    grid-area: 1 / 1 / 2 / 4;
+    grid-area:  1 / 1 / 2 / 5;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,48 +28,77 @@ section{
     font-family: 'Avenir','Helvetica Neue', sans-serif;
     display: flex;
 }
-section#top-illust{
-    grid-area: 2 / 1 / 3 / 4;
+#top-illust{
+    grid-area: 2 / 2 / 3 / 4;
     background-image: url(../media/img01.png);
 
 }
-img#topimg{
-    width: auto;
-}
 
-section#form{
-    grid-area: 3 / 1 / 4 / 4;
+#form{
+    grid-area:  3 / 1 / 4 / 5;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
     background-color: #ffd700;
+
 }
 .desitination{
     float: left;
 }
+.my-trips{
+    grid-area: 4 / 1 / 5 / 5;
+    text-align: center;
+    font-weight: 700;
+    /* background-color: darkslategray; */
 
-
-.form{
-    display: block;
-    justify-items: center;
 }
 
-section#entry{
-    grid-area: 4 / 1 / 5 / 4;
-    display: flex;
-    justify-content: space-around;
-    /* background-color: lightyellow; */
+.form{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+
+}
+
+#entry{
+    grid-area: 5 / 2 / 6 / 4;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid rgb(206, 206, 206);
+
 }
 
 .entry-img{
-    
+    grid-area: 5 / 2 / 6 / 3;
 
 }
+
+.a,
+.b,
+.c,
+.d,
+.e,
+.f{
+    display: flex;
+}
+
 
 .entry-text{
-
+    grid-area: 5 / 3 / 6 / 4; 
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+    padding-left: 30px;
 }
+
+.place{
+    display: flex;
+    text-align: right;
+}
+
 .app-title{
     font-size: 1.6em;
     font-weight: 700;
@@ -80,7 +106,8 @@ section#entry{
 
 label{
     display: block;
-    font-weight: 500;
+    text-align: left;
+    font-weight: 600;
     font-size: 1.5em;
 }
 
@@ -90,21 +117,17 @@ input{
     width: 15em;
     font-size: 1em;
     border: none;
+    background-color: white;
+    margin-right: 30px;
 }
 
 button{
-    width: 6em;
-    height: 1.8em;
+    width: 7em;
+    height: 2em;
     font-size: 1.2em;
     font-weight: 600;
     border-radius: 20px;
-    width: 7em;
-    height: 2em;
     border: none;
-}
-button#generate{
-    color: white;
-    background-color: #00238c;
 }
 
 button#add-trip{
@@ -113,9 +136,15 @@ button#add-trip{
     margin-right: 30px;
 }
 
+button#generate{
+    border: 3px solid #333;
+    background-color: #ffd700;
+}
+/* put Hover state later*/
+
 /* Footer */
 footer{
-    grid-area: 5 / 1 / 6 / 4;
+    grid-area: 6 / 1 / 7 / 5;
     display: block;
     text-align: center;
     background-color: darkslategray;
