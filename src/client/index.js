@@ -1,4 +1,13 @@
-import { handleSubmit } from './js/app.js'
+import './styles/style.scss'
+import { handleSubmit } from './js/app.js';
+import { getWeather } from './js/app.js';
 
-document.getElementById('location').addEventListener('submit', handleSubmit);
+console.log(getWeather);
+
+document.getElementById('location').addEventListener('submit', getWeather);
 document.getElementById('deperture-date').addEventListener('submit', handleSubmit);
+
+export{
+    handleSubmit,
+    getWeather
+}

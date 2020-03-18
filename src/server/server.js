@@ -20,7 +20,7 @@ app.use(cors());
 
 
 // Initialize the main project folder
-app.use(express.static('client'));
+app.use(express.static('dist'));
 
 /* Spin up the server*/
 const port = 8000;
@@ -33,6 +33,10 @@ const server = app.listen(port, listening);
 
 // Initialize all route with a callback function
 app.get('/all', sendData)
+
+app.get('/', function(req, res) {
+    res.sendFile('dist/index.html')
+})
 
 // Callback function to complete GET '/all'
 function sendData(req, res) {

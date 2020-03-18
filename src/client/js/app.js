@@ -1,6 +1,13 @@
 /* Global Variables */
 
 // Personal API Key for OpenWeatherMap API
+const Geonames = require('geonames.js')
+const geonames = new Geonames({
+    username: 'myusername',
+    lan: 'en',
+    encoding: 'JSON'
+  });
+
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('submit').addEventListener('click', performAction);
@@ -10,7 +17,7 @@ function performAction(e){
     const location = document.getElementById('location').value;
     const date = document.getElementById('deperture-date').value;
     console.log(location, date)
-    getWeather(baseURL, zip, apiKey, units)
+    getWeather()
     // Add a data to POST request
     .then(function gotData(data){
         postData('http://localhost:8000/addWeather', {date: newDate,temp: data.main.temp, userResponse: userResponse});
@@ -72,3 +79,6 @@ const updateUI = async () =>　{
         console.log("error", error);
     }
 }
+
+export { getWeather };
+// export { handleSubmit };
