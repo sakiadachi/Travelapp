@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Journal app</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/client/styles/styles2.css">
+    <link rel="stylesheet" href="/src/client/styles/styles.css">
 </head>
 
 <body>
@@ -13,25 +14,27 @@
         <div class="title">
             Travel Journal
         </div>
-        <button id="add-trip" type="submit">+ add trip</button>
+        <button class="add-trip" type="submit">+ add trip</button>
     </header>
     <section id="top-illust">
         <img src="" id="topimg">
     </section>
 
     <section id="form">
-        <div class="form">
-            <div class="destination"></div>
-            <label for="destination">My trip to: </label>
-            <input type="text" id="destination" placeholder="enter location">
+        <div class="location">
+            <div class="title-form">My trip to: </div>
+            <form class="form" id="form">
+                <input id="location" type="text" name="input" placeholder="enter location">
+            </form>
         </div>
+
         <div class="date">
-            <label for="start">Departing: </label>
-            <input type="date" id="start" name="trip-start" value="DD-MM-YYYY">
+            <div class="title-form">Departing: </div>
+            <input type="date" id="deperture-date" name="trip-start" value="yyyy-MM-dd">
             </br>
         </div>
         </div>
-        <button id="generate" type="submit"> Generate </button>
+        <input id="submit" type="submit" name value="Submit your trip!">
     </section>
 
     <div class="my-trips">
@@ -43,22 +46,24 @@
             <img src="https://source.unsplash.com/random/200x200" alt="img" width="300px">
         </div>
         <div class="entry-text">
-            <div class="a">
-                <p>My trip to: </p>
-                <div id="place">
-                    <p>Paris</p>
+                <div class="title-entry">
+                    <div class="a">
+                        <p>My trip to: </p>
+                        <div id="place">
+                            <p>Paris</p>
+                        </div>
+                    </div>
+                <div class="b">
+                    <p>Departing: </p>
+                        <div id="date">
+                            <p>XX.XX.XXXX</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="b">
-                <p>Departing: </p>
-                <div id="date">
-                    <p>XX.XX.XXXX</p>
-                </div>
-            </div>
 
             <div class="c">
-                <p>flight info: </p>
+                <div class="title-entry-two">flight info: 
+                </div>
                 <div id="flight info">
                     <p>HND 03:00PM
                         <br>Flight707 AAA AIR</p>
@@ -77,7 +82,7 @@
             </div>
 
             <div class="f">
-                <p>Typical weather for then is: </p>
+                <div class="title-entry-two">Typical weather for then is: </div>
                 <div id="weather">
                     <p>Mostly cloudy</p>
                     <p>High 33c, Low 10c</p>

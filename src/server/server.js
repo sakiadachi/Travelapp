@@ -8,10 +8,11 @@ const express = require('express');
 const app = express();
 
 /* Middleware*/
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 
 // Cors for cross origin allowance
 const cors = require('cors');
@@ -19,7 +20,7 @@ app.use(cors());
 
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('src'));
 
 const port = 8000;
 
