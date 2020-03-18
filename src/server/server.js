@@ -20,18 +20,16 @@ app.use(cors());
 
 
 // Initialize the main project folder
-app.use(express.static('src'));
-
-const port = 8000;
+app.use(express.static('client'));
 
 /* Spin up the server*/
+const port = 8000;
+
 const server = app.listen(port, listening);
  function listening(){
      // Callback to debug
     console.log(`running on localhost: ${port}`);
 };
-
-
 
 // Initialize all route with a callback function
 app.get('/all', sendData)
@@ -39,6 +37,7 @@ app.get('/all', sendData)
 // Callback function to complete GET '/all'
 function sendData(req, res) {
     res.send(projectData);
+    console.log("Hi from server")
 };
 
 
@@ -47,7 +46,9 @@ app.post('/addWeather', addWeather);
 
 
 function addWeather(req, res){
+    res.send('Post recerived');
     console.log(req.body)
+    DataCue.push(req.body);
     NewEntry = {
         date: req.body.date,
         temp : req.body.temp,
@@ -58,8 +59,6 @@ function addWeather(req, res){
     res.send(projectData)
     console.log(projectData)
 }
-
-
 
 
 

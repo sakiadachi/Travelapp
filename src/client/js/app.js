@@ -1,22 +1,15 @@
 /* Global Variables */
 
 // Personal API Key for OpenWeatherMap API
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey =  '&appid=854efe04118733b92102a2581402dc25';
-const units =  '&units=metric';
-
-
-
-let d = new Date();
-let newDate = (d.getMonth()+1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('submit').addEventListener('click', performAction);
 
 /* Function called by event listener */
 function performAction(e){
-    const zip = document.getElementById('zip').value;
-    const userResponse = document.getElementById('feelings').value;
+    const location = document.getElementById('location').value;
+    const date = document.getElementById('deperture-date').value;
+    console.log(location, date)
     getWeather(baseURL, zip, apiKey, units)
     // Add a data to POST request
     .then(function gotData(data){
@@ -61,7 +54,6 @@ const postData = async (url, data) =>{
         console.log("error", error);
     }
 }
-
 
 // Update UI
 const updateUI = async () =>　{
