@@ -41,24 +41,17 @@ app.get('/', function(req, res) {
 // Callback function to complete GET '/all'
 function sendData(req, res) {
     res.send(projectData);
-    console.log("Hi from server")
 };
 
 
-// POST ROUTE
-app.post('/addWeather', addWeather);
+// POST ROUTE for geoname api
+app.post('/addPlace', addPlace);
 
-
-function addWeather(req, res){
-    res.send('Post recerived');
+function addPlace(req, res){
     console.log(req.body)
-    DataCue.push(req.body);
     NewEntry = {
-        date: req.body.date,
-        temp : req.body.temp,
-        userResponse: req.body.userResponse
+        lat: req.body.geonames.lat,
     }
-    
     projectData.push(NewEntry);
     res.send(projectData)
     console.log(projectData)
