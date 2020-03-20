@@ -19,20 +19,18 @@
     </section>
 
     <section id="form">
-        <div class="location">
-            <div class="title-form">My trip to: </div>
-            <form class="form" id="form">
-                <input id="location" type="text" name="input" placeholder="enter location">
-            </form>
-        </div>
+        <form action="" method="get" id="entry-form">
+            <div class="form-location">
+                <label for="location">My trip to: </label>
+                <input type="text" id="location" name="location" placeholder="enter location" required>
+            </div>
 
-        <div class="date">
-            <div class="title-form">Departing: </div>
-            <input type="date" id="deperture-date" name="trip-start" value="yyyy-MM-dd">
-            </br>
-        </div>
-        </div>
-        <input id="submit" type="submit" name value="Save your trip!">
+            <div class="form-date">
+                <label for="date">Departing: </label>
+                <input type="date" id="date" name="deperture-date" required>
+            </div>
+            <button type="submit"="form-submit" name value="Save your trip!"></button>
+        </form>
     </section>
 
     <div class="my-trips">
@@ -40,10 +38,11 @@
     </div>
 
     <section id="entry">
-        <div class="entry-img">
-            <img src="https://source.unsplash.com/random/200x200" alt="img" width="300px">
-        </div>
-        <div class="entry-text">
+        <div class="entry-container">
+            <div class="entry-img">
+                <img src="https://source.unsplash.com/random/200x200" alt="img" width="300px">
+            </div>
+            <div class="entry-text">
                 <div class="title-entry">
                     <div class="a">
                         <p>My trip to: </p>
@@ -51,39 +50,41 @@
                             <p>Paris</p>
                         </div>
                     </div>
-                <div class="b">
-                    <p>Departing: </p>
+                    <div class="b">
+                        <p>Departing: </p>
                         <div id="date">
                             <p>XXXX.XX.XX</p>
                         </div>
                     </div>
                 </div>
 
-            <div class="c">
-                <div class="title-entry-two">flight info: 
+                <div class="c">
+                    <div class="title-entry-two">flight info:
+                    </div>
+                    <div id="flight info">
+                        <p>HND 03:00PM
+                            <br>Flight707 AAA AIR</p>
+                        <p>HND 03:00PM
+                            <br>Flight707 AAA AIR</p>
+                    </div>
                 </div>
-                <div id="flight info">
-                    <p>HND 03:00PM
-                        <br>Flight707 AAA AIR</p>
-                    <p>HND 03:00PM
-                        <br>Flight707 AAA AIR</p>
+
+                <div class="d">
+                    <button class="save-trip">save trip</button>
+                    <button class="remove-trip">remove trip</button>
                 </div>
-            </div>
 
-            <div class="d">
-                <button class="save-trip">save trip</button>
-                <button class="remove-trip">remove trip</button>
-            </div>
+                <div class="e">
+                    <div class="location"></div> is
+                    <div class="count-days"></div> days away
+                </div>
 
-            <div class="e">
-                <div class="location"></div> is <div class="count-days"></div> days away
-            </div>
-
-            <div class="f">
-                <div class="title-entry-two">Typical weather for then is: </div>
-                <div id="weather">
-                    <p>Mostly cloudy</p>
-                    <p>High 33c, Low 10c</p>
+                <div class="f">
+                    <div class="title-entry-two">Typical weather for then is: </div>
+                    <div id="weather">
+                        <p>Mostly cloudy</p>
+                        <p>High 33c, Low 10c</p>
+                    </div>
                 </div>
             </div>
         </div>

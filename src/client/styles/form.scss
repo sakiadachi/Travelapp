@@ -1,3 +1,32 @@
+$font-stack: 'Avenir','Helvetica Neue', sans-serif;
+$textcolor: #333;
+$fontsize: 16px;
+$borderstyle: 2px solid rgb(206, 206, 206);
+$yellow: #ffd700;
+$h2: 700;
+$h3: 600;
+
+
+#form{
+    button{
+        background: $yellow;
+        margin-top: 10px;
+        margin-right: 20px;
+        padding: 0.6em;
+        border-radius: 30px;
+        width: 10em;
+        border: 2px solid white;
+    }
+}
+
+#entry-form{
+    width: 40%;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+
 .location,
 .date{
     display: flex;
@@ -14,16 +43,7 @@
     font-size: 1.5em;
     margin-right: 20px
 }
-input#submit{
-    font-weight: 600;
-    font-size: 1em;
-    margin-top: 10px;
-    margin-right: 20px;
-    padding: 0.6em;
-    border-radius: 30px;
-    width: 10em;
-    border: 2px solid white;
-}
+
 
 /* put Hover state later*/
 #submit:hover{

@@ -1,4 +1,4 @@
-/* Global Variables */
+// /* Global Variables */
 const baseURL = 'http://api.geonames.org/'
 const contains = 'contains?'
 const search ='search?name=' 
@@ -7,60 +7,85 @@ const apiId = '&username=sakiadachi'
 const Geonames = require('geonames.js')
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('submit').addEventListener('click', performAction);
+document.getElementById('submit').addEventListener('submit', performAction);
 
 /* Function called by event listener */
 function performAction(e){
+
     const location = document.getElementById('location').value;
     const date = document.getElementById('deperture-date').value;
     console.log(location, date)
-    getPlace(baseURL, search, location, apiId)
-    // Add a data to POST request
-    .then(function gotData(data){
-        postData('http://localhost:8000/addPlace', {lat: data.geoname.lat});
-        // updateUI('http://localhost:8000/all')
-    });
 }
+    // getPlace()
+    // Add a data to POST request
+//     .then(function getData(data){
+//         postData('http://localhost:8000/addPlace', {lat: data.geoname.lat});
+//         // updateUI('http://localhost:8000/all')
+//     })
+//     .then(res => {
+//         return res.json()
+//     })
+// }
+
+function getPlace(event) {
+    event.preventDefault()
+
+    const location = document.getElementById('location').value;
+    const date = document.getElementById('deperture-date').value;
+    console.log(location, date);
+
+    fetch(baseURL + search + location + apiId, 
+        {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data),
+        }
+    ).then (res => {
+        return res.json();
+    }
+    ) .catch (error) 
+};
 
 /* Function to GET Web API Data*/
-const getPlace = async (url, data) =>{
+// const getPlace = async (url, data) => {
 
-    const res = await fetch(baseURL + search + location + apiId, {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data),
-    })
-    try{
-        const data = await res.json();
-        console.log(data)
-        return data;
-    }    catch(error){
-        console.log("error", error)
-    }
-}
+//     const res = await fetch(baseURL + search + location + apiId, {
+//             method: 'POST',
+//             credentials: 'same-origin',
+//             headers: {'Content-Type': 'application/json'},
+//             body: JSON.stringify(data),
+//     })
+//     try{
+//         const data = await res.json();
+//         console.log(data)
+//         return data;
+//     }    catch(error){
+//         console.log("error", error)
+//     }
+// }
 
 // /* Function to POST data */
 
-const postData = async (url, data) =>{
-    console.log(url, data)
+// const postData = async (url, data) =>{
+//     console.log(url, data)
 
-    const response = await fetch (url,
-        {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data),
-    });
+//     const response = await fetch (url,
+//         {
+//             method: 'POST',
+//             credentials: 'same-origin',
+//             headers: {'Content-Type': 'application/json'},
+//             body: JSON.stringify(data),
+//     });
 
-    try {
-        const newData = await response.json();
-        console.log(JSON.stringify(newData));
-        return newData
-    } catch(error){
-        console.log("error", error);
-    }
-}
+//     try {
+//         const newData = await response.json();
+//         console.log(JSON.stringify(newData));
+//         return newData
+//     } catch(error){
+//         console.log("error", error);
+//     }
+// }
 
 // Update UI
 // const updateUI = async () =>　{
@@ -81,4 +106,4 @@ const postData = async (url, data) =>{
 // }
 
 export { getPlace };
-// export { handleSubmit };
+// export { handleSubmit }
