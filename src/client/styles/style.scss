@@ -2,7 +2,7 @@ $font-stack: 'Avenir','Helvetica Neue', sans-serif;
 $textcolor: #333;
 $fontsize: 1em;
 $borderstyle: 2px solid rgb(206, 206, 206);
-$yellow: #fff1a3;
+$yellow: #ffd700;
 $green: rgb(60, 97, 72);
 $h2: 700;
 $h3: 600;
@@ -25,7 +25,6 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: $borderstyle;
 }
 
 /* Main */
@@ -40,8 +39,8 @@ section{
     justify-content: center;
     align-items: center;
     background-color: rgb(60, 97, 72);
-    border-bottom: $borderstyle;
 }
+
 .my-trips{
     grid-area: 3 / 2 / 4 / 3;
     text-align: left;
@@ -53,7 +52,8 @@ section{
     margin-bottom: 10px;
 }
 .entry-img{
-    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
 }
 
 .entry-text{
@@ -61,11 +61,14 @@ section{
 }
 
 button{
-    width: 7em;
-    height: 2em;
+    color: $textcolor;
+    background-color: $yellow;
+    height: 1.8em;
     font-size: 1.2em;
-    font-weight: 600;
+    font-weight: $h3;
     border: none;
+    border-radius: 2em;
+    padding: 0 0.8em 0 0.8em ;
 }
 
 footer{

@@ -4,14 +4,9 @@ import './styles/form.scss'
 import './styles/footer.scss'
 import './styles/entry.scss'
 
+import { handleSubmit } from './js/formHandler'
+console.log("hello")
 
-// import { handleSubmit } from './js/app.js';
-import { getPlace } from './js/app.js';
+document.getElementById('entry-form').addEventListener('submit', handleSubmit)
 
-const getLocation = document.getElementById('location').addEventListener('submit', getPlace);
-// document.getElementById('deperture-date').addEventListener('submit', handleSubmit);
-
-export{
-    // handleSubmit,
-    getPlace
-}
+var doc = document.getElementById('location').value;

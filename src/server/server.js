@@ -1,10 +1,25 @@
+// /* Global Variables */
+const baseURL = 'http://api.geonames.org/'
+const search ='search?placename=' 
+const apiId = '&username=sakiadachi';
+
+var path = require('path')
+const geonamesApi = require('geonames')
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+var filename = path.basename('../dist/index.html')
+console.log(filename)
+
+
+
 // Setup empty JS object to act as endpoint for all routes
 projectData = [];
 
 // Require Express to run server and routes
 const express = require('express');
 
-// Start up an instance of app
 const app = express();
 
 /* Middleware*/
@@ -18,9 +33,9 @@ app.use(bodyParser.urlencoded({
 const cors = require('cors');
 app.use(cors());
 
-
 // Initialize the main project folder
 app.use(express.static('dist'));
+
 
 /* Spin up the server*/
 const port = 8000;

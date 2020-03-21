@@ -1,19 +1,8 @@
-// /* Global Variables */
-const baseURL = 'http://api.geonames.org/'
-const contains = 'contains?'
-const search ='search?name=' 
-const apiId = '&username=sakiadachi'
-
-const Geonames = require('geonames.js')
-
-// Event listener to add function to existing HTML DOM element
-document.getElementById('submit').addEventListener('submit', performAction);
-
 /* Function called by event listener */
 function performAction(e){
 
     const location = document.getElementById('location').value;
-    const date = document.getElementById('deperture-date').value;
+    const date = document.getElementById('date').value;
     console.log(location, date)
 }
     // getPlace()
@@ -27,25 +16,27 @@ function performAction(e){
 //     })
 // }
 
-function getPlace(event) {
-    event.preventDefault()
+// function getPlace(event) {
+//     event.preventDefault()
 
-    const location = document.getElementById('location').value;
-    const date = document.getElementById('deperture-date').value;
-    console.log(location, date);
+//     const location = document.getElementById('location').value;
+//     const date = document.getElementById('deperture-date').value;
+//     console.log(location, date);
 
-    fetch(baseURL + search + location + apiId, 
-        {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
-        }
-    ).then (res => {
-        return res.json();
-    }
-    ) .catch (error) 
-};
+//     fetch('http://api.geonames.org/'+location + 'search?name=' + '&username=sakiadachi', 
+//         {
+//         method: 'GET',
+//         mode: 'no-cors',
+//         credentials: 'same-origin',
+//         headers: {'Content-Type': 'application/json'},
+//         body: JSON.stringify(data),
+//         }
+//     ).then (res => {
+//         return res.json();
+//     }
+//     ).then(console.log(res)
+//     ) .catch (error) 
+// };
 
 /* Function to GET Web API Data*/
 // const getPlace = async (url, data) => {
