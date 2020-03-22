@@ -40,7 +40,7 @@
     <section id="entry">
         <div class="entry-container">
             <div class="entry-img">
-                <img src="https://source.unsplash.com/random/200x200" alt="img" width="300px">
+                <img src="https://source.unsplash.com/random/200x200" alt="img">
             </div>
             <div class="entry-text">
                 <div class="title-entry">
@@ -76,7 +76,7 @@
 
                 <div class="e">
                     <div class="location"></div> is
-                    <div class="count-days"></div> days away
+                    <div id="count-days"></div> days away
                 </div>
 
                 <div class="f">
@@ -93,6 +93,16 @@
     <footer>
         <a href="#title">To top</a>
     </footer>
+
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -1,13 +1,14 @@
+
+
 // /* Global Variables */
-const baseURL = 'http://api.geonames.org/'
-const search ='search?placename=' 
-const apiId = '&username=sakiadachi';
-
 var path = require('path')
-const geonamesApi = require('geonames')
-const dotenv = require('dotenv');
-dotenv.config();
+dotenv = require('dotenv').config({path: '../../.env'});
 
+const Geonames = require('geonames.js')
+Geonames.connect({
+    host: process.env.geonameAPI_HOST,
+    username: procecss.env.geonamesAPI_ID,
+})
 
 var filename = path.basename('../dist/index.html')
 console.log(filename)
@@ -38,7 +39,7 @@ app.use(express.static('dist'));
 
 
 /* Spin up the server*/
-const port = 8000;
+const port = 8081;
 
 const server = app.listen(port, listening);
  function listening(){
