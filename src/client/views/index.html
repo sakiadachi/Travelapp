@@ -27,7 +27,7 @@
 
             <div class="form-date">
                 <label for="date">Departing: </label>
-                <input type="date" id="date" name="deperture-date" required>
+                <input type="date" id="date" name="deperture-date" value="yyyy-mm-dd" required>
             </div>
             <button type="submit" id="form-submit" name value="Save your trip!">Save your trip</button>
         </form>
@@ -40,28 +40,26 @@
     <section id="entry">
         <div class="entry-container">
             <div class="entry-img">
-                <img src="https://source.unsplash.com/random/200x200" alt="img">
+                <img src="../media/img01.png" alt="img">
             </div>
             <div class="entry-text">
                 <div class="title-entry">
-                    <div class="a">
+
+                    <div class="place">
                         <p>My trip to: </p>
-                        <div id="place">
-                            <p>Paris</p>
-                        </div>
+                        <p>Paris</p>
                     </div>
-                    <div class="b">
+
+                    <div class="date">
                         <p>Departing: </p>
-                        <div id="date">
-                            <p>XXXX.XX.XX</p>
-                        </div>
+                        <p>XXXX.XX.XX</p>
                     </div>
                 </div>
 
-                <div class="c">
+                <div class="flight">
                     <div class="title-entry-two">flight info:
                     </div>
-                    <div id="flight info">
+                    <div class="flight info">
                         <p>HND 03:00PM
                             <br>Flight707 AAA AIR</p>
                         <p>HND 03:00PM
@@ -69,22 +67,17 @@
                     </div>
                 </div>
 
-                <div class="d">
-                    <button class="save-trip">save trip</button>
-                    <button class="remove-trip">remove trip</button>
+                <div class="infomation">
+                    <div class="location"></div> 
+                    <p> is</p>
+                    <div id="count-days"></div>
+                    <p> days away</p>
                 </div>
 
-                <div class="e">
-                    <div class="location"></div> is
-                    <div id="count-days"></div> days away
-                </div>
-
-                <div class="f">
+                <div class="weather">
                     <div class="title-entry-two">Typical weather for then is: </div>
-                    <div id="weather">
                         <p>Mostly cloudy</p>
                         <p>High 33c, Low 10c</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -103,6 +96,8 @@
             });
         }
     </script>
+    <script type="text/javascript" src="main.js"></script>
+
 </body>
 
 </html>

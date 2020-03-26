@@ -1,10 +1,10 @@
-// const geonamesURL = 'http://api.geonames.org/search?q=';
-// const geonamesApiId = '&maxRows=10&username=sakiadachi';
+const geonamesURL = 'http://api.geonames.org/search?q='
+const geonamesApiId = '&maxRows=10&username=sakiadachi'
 
-// const darkSkyURL = 'https://api.darksky.net/forecast/';
-// const darkSkyKey = '805a9b05d34f4086ec95f0d2f6776e1d/';
+const darkSkyURL = 'https://api.darksky.net/forecast/'
+const darkSkyApiKey = '805a9b05d34f4086ec95f0d2f6776e1d/'
 
-let post;
+let post=[];
 
 function handleSubmit(event) {
     event.preventDefault()
@@ -29,8 +29,9 @@ function handleSubmit(event) {
             const lng = parseFloat(content.geonames[0].lng).toFixed(3);
             const lat = parseFloat(content.geonames[0].lat).toFixed(3);
             const countryName = content.geonames[0].countryName;
-            console.log(lng+ "," + lat + "," + countryName);
-            return fetch (darkSkyURL + darkSkyKey + lat + "," + lng,
+            const cityName =content.geonames[0].population;
+            console.log("+++" +cityName);
+            return fetch (darkSkyURL + darkSkyApiKey + lat + "," + lng,
             {
                 method: "GET",
                 credentials: "same-origin",
@@ -48,6 +49,7 @@ function handleSubmit(event) {
             .then(function (newData) {
                 const temp = newData.currently.temperature;
                 const currentWeather = newData.minutely.summery;
+                document.getElementById("weather").innerHTML  = currentWeather;
                 console.log(newData);
             })
             .catch(function (error) {
@@ -55,6 +57,8 @@ function handleSubmit(event) {
                 document.getElementById("place").innerHTML  = "Can't find the place.";
             });
         })
+
+
 
 
 
@@ -138,7 +142,7 @@ function getCount(){
 
 }
  
-export {
-    handleSubmit,
-    getCount
-};
+// export {
+//     handleSubmit,
+//     getCount
+// };

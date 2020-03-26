@@ -1,48 +1,37 @@
+// import { json } from "express";
+
 /* Function called by event listener */
-function performAction(e){
-
-    const location = document.getElementById('location').value;
-    const date = document.getElementById('date').value;
-    console.log(location, date)
-}
-    // getPlace()
-    // Add a data to POST request
-//     .then(function getData(data){
-//         postData('http://localhost:8000/addPlace', {lat: data.geoname.lat});
-//         // updateUI('http://localhost:8000/all')
-//     })
-//     .then(res => {
-//         return res.json()
-//     })
-// }
-
-// function getPlace(event) {
+// function getImage(event){
 //     event.preventDefault()
 
 //     const location = document.getElementById('location').value;
-//     const date = document.getElementById('deperture-date').value;
-//     console.log(location, date);
 
-//     fetch('http://api.geonames.org/'+location + 'search?name=' + '&username=sakiadachi', 
-//         {
-//         method: 'GET',
-//         mode: 'no-cors',
-//         credentials: 'same-origin',
-//         headers: {'Content-Type': 'application/json'},
-//         body: JSON.stringify(data),
-//         }
-//     ).then (res => {
-//         return res.json();
-//     }
-//     ).then(console.log(res)
-//     ) .catch (error) 
+//     function createURL(URL) { 
+//         event.preventDefault()
+
+//         var pixabayApiKey = '15691615-b0db53ac140f2e0079db199ff'
+//         var pixabayURL = 'https://pixabay.com/api/?key=' + pixabayApiKey
+//         var keyword = '&q=' + encodeURIComponent(value) ;
+//         var option = 'image_type=photo&orientation=horizontal&per_page=1'
+
+//         var URL = pixabayURL + keyword +location + option;
+//         return URL;
+
+//         console/
 // };
 
-/* Function to GET Web API Data*/
-// const getPlace = async (url, data) => {
 
-//     const res = await fetch(baseURL + search + location + apiId, {
-//             method: 'POST',
+// }
+// var pixabayApiKey = '15691615-b0db53ac140f2e0079db199ff'
+// var pixabayURL = 'https://pixabay.com/api/?key=' + pixabayApiKey
+// var keyword = '&q=' + encodeURIComponent(value) ;
+// var option = 'image_type=photo&orientation=horizontal&per_page=1'
+
+// /* Function to GET Web API Data*/
+// const getImage = async (url, data) => {
+
+//     const res = await fetch(pixabayURL + keyword + location + option, {
+//             method: 'GET',
 //             credentials: 'same-origin',
 //             headers: {'Content-Type': 'application/json'},
 //             body: JSON.stringify(data),
@@ -96,5 +85,10 @@ function performAction(e){
 //     }
 // }
 
-export { getPlace };
+// export { getImage };
 // export { handleSubmit }
+
+const newEntry = document.createElement('div');
+const newPlace = document.querySelector('p');
+
+newEntry.appendChild(newPlace)

@@ -1,13 +1,15 @@
-
-
 // /* Global Variables */
 var path = require('path')
-dotenv = require('dotenv').config({path: '../../.env'});
 
-const Geonames = require('geonames.js')
-Geonames.connect({
-    host: process.env.geonameAPI_HOST,
-    username: procecss.env.geonamesAPI_ID,
+const dotenv = require('dotenv')
+dotenv.config();
+
+
+const geonamesAPI = require('geonames.js')
+
+var geoApi = new geonamesAPI({
+    host: process.env.geonamesAPI_HOST,
+    username: process.env.geonamesAPI_ID,
 })
 
 var filename = path.basename('../dist/index.html')
@@ -71,8 +73,9 @@ function addPlace(req, res){
     projectData.push(NewEntry);
     res.send(projectData)
     console.log(projectData)
-}
+};
 
 
 
 
+module.exports = require('../client/js/formHandler');
