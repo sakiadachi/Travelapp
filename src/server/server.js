@@ -1,17 +1,45 @@
 // /* Global Variables */
-var path = require('path')
 
 const dotenv = require('dotenv')
 dotenv.config();
 
+/* geonames API */
+"use strict";
 
-const geonamesAPI = require('geonames.js')
+var request = require('request');
+var extend = require('util')._extend;
+var xml2js = require('xml2js');
 
-var geoApi = new geonamesAPI({
-    host: process.env.geonamesAPI_HOST,
-    username: process.env.geonamesAPI_ID,
-})
+const Geonames = require('geonames.js')
+const geonames = new Geonames({
+    username: process.env.NGN_USERNAME,
+    lan: 'en',
+    encoding: 'JSON'
+});
+console.log(process.env.NGN_USERNAME);
 
+module.exports = function (config) {
+    var geonames = {};
+        //init
+        geonames._username = config.username || process.env.NGN_USERNAME;
+        geonames._endpoint = config.endpoint || 'http://api.geonames.org/search/q=';
+        geonames._language = config.language || 'en';
+        geonames._country = config.country || 'UK';
+        geonames._charset = config.charset || 'UTF-8';
+        geonames._postCodeDefaults = {
+            country :  geonames._country,
+            maxRows :  5,
+            charset : geonames._charset,
+            username : geonames._username,
+            lang : geonames._language,
+        };
+}
+
+/* darkSkyAPI */
+
+/*PIXABay API */
+
+var path = require('path')
 var filename = path.basename('../dist/index.html')
 console.log(filename)
 
@@ -77,5 +105,3 @@ function addPlace(req, res){
 
 
 
-
-module.exports = require('../client/js/formHandler');
