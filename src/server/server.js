@@ -1,39 +1,8 @@
 // /* Global Variables */
 
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 dotenv.config();
-
-/* geonames API */
-"use strict";
-
-var request = require('request');
-var extend = require('util')._extend;
-var xml2js = require('xml2js');
-
-const Geonames = require('geonames.js')
-const geonames = new Geonames({
-    username: process.env.NGN_USERNAME,
-    lan: 'en',
-    encoding: 'JSON'
-});
-console.log(process.env.NGN_USERNAME);
-
-module.exports = function (config) {
-    var geonames = {};
-        //init
-        geonames._username = config.username || process.env.NGN_USERNAME;
-        geonames._endpoint = config.endpoint || 'http://api.geonames.org/search/q=';
-        geonames._language = config.language || 'en';
-        geonames._country = config.country || 'UK';
-        geonames._charset = config.charset || 'UTF-8';
-        geonames._postCodeDefaults = {
-            country :  geonames._country,
-            maxRows :  5,
-            charset : geonames._charset,
-            username : geonames._username,
-            lang : geonames._language,
-        };
-}
+const fetch = require('node-fetch');
 
 /* darkSkyAPI */
 
@@ -42,8 +11,6 @@ module.exports = function (config) {
 var path = require('path')
 var filename = path.basename('../dist/index.html')
 console.log(filename)
-
-
 
 // Setup empty JS object to act as endpoint for all routes
 projectData = [];
@@ -91,9 +58,7 @@ function sendData(req, res) {
 
 
 // POST ROUTE for geoname api
-app.post('/addPlace', addPlace);
-
-function addPlace(req, res){
+app.post('/location', async (req, res) => {
     console.log(req.body)
     NewEntry = {
         lat: req.body.geonames.lat,
@@ -101,7 +66,32 @@ function addPlace(req, res){
     projectData.push(NewEntry);
     res.send(projectData)
     console.log(projectData)
-};
+});
 
+app.get('/location', async (request,response) => {
+    const location = request.query.q;
+    const time = request.query.time;
+    console.log(time);
 
+    const geoApi_url = `http://api.geonames.org/search?q=${location}&maxRows=10&username=${process.env.NGN_USERNAME}`;
 
+    const fetch_response = await fetch(
+        geoApi_url, {
+            headers: {'Accept': "application/json"}
+        }
+    );
+
+    // console.log(geoApi_url);
+    const json = await fetch_response.json();
+    // TODO handle no results
+    const firstLocation = json.geonames[0];
+    const lng = firstLocation.lng;
+    const lat = firstLocation.lat;
+    const weatherbitApiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${process.env.WEATHER_KEY}`;
+    const weatherFetchResponse = await fetch(weatherbitApiUrl);
+    console.log(weatherbitApiUrl)
+    const weather = await weatherFetchResponse.json();
+    // console.log(weather)
+    const forecast = weather.hourly.summary;
+    response.json(forecast);
+})
