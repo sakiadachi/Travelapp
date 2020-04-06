@@ -58,20 +58,22 @@ function sendData(req, res) {
 
 
 // POST ROUTE for geoname api
-app.post('/location', async (req, res) => {
-    console.log(req.body)
-    NewEntry = {
-        lat: req.body.geonames.lat,
-    }
-    projectData.push(NewEntry);
-    res.send(projectData)
-    console.log(projectData)
-});
+// app.post('/location', async (req, res) => {
+//     console.log(req.body)
+//     NewEntry = {
+//         lat: req.body.geonames.lat,
+//     }
+//     projectData.push(NewEntry);
+//     res.send(projectData)
+//     console.log(projectData)
+// });
 
+
+// GET route for api calls
 app.get('/location', async (request,response) => {
     const location = request.query.q;
-    const time = request.query.time;
-    console.log(time);
+    const days = request.query.days;
+    // console.log(day);
 
     const geoApi_url = `http://api.geonames.org/search?q=${location}&maxRows=10&username=${process.env.NGN_USERNAME}`;
 
@@ -81,17 +83,43 @@ app.get('/location', async (request,response) => {
         }
     );
 
-    // console.log(geoApi_url);
+    console.log(geoApi_url);
     const json = await fetch_response.json();
     // TODO handle no results
     const firstLocation = json.geonames[0];
     const lng = firstLocation.lng;
     const lat = firstLocation.lat;
+
     const weatherbitApiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${process.env.WEATHER_KEY}`;
+    console.log(weatherbitApiUrl);
     const weatherFetchResponse = await fetch(weatherbitApiUrl);
-    console.log(weatherbitApiUrl)
     const weather = await weatherFetchResponse.json();
     // console.log(weather)
-    const forecast = weather.hourly.summary;
-    response.json(forecast);
+    
+
+
+    const pixabayApiUrl =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${location}&image_type=photo&orientation=horizontal&category=places`;
+    const pixabayFetchResponse = await fetch(pixabayApiUrl);
+    const placePic = await pixabayFetchResponse.json();
+    $.getJSON(pixabayApiUrl, function(data){
+        if (parseInt(data.totalHits) > 0)
+            $.each(data.hits, function(i, hit){ console.log(hit.pageURL); });
+        else
+            console.log('No hits');
+        });
+
+    let newEntry = {
+        forecast: weather.data[days].weather.description,
+        lowTemp: weather.data[days].low_temp,
+        maxTemp: weather.data[days].max_temp,
+        cityName: weather.city_name,
+        forecastDate: weather.data[days].datetime,
+        picUrl: placePic.hits[1].webformatURL
+    }
+    console.log(pixabayApiUrl);
+    projectData.push(newEntry);
+    response.json(newEntry);
+
+
+    
 })
