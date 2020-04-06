@@ -28,32 +28,49 @@ async function handleSubmit(event) {
         .then(res => {
             return res.json();
         })
-        .then(content => {
-            const forecast = content.forecast;
-            const forecastDate = content.forecastDate;
-            const maxTemp = content.maxTemp;
-            const lowTemp = content.lowTemp;
-            const cityName = content.cityName;
-            // let placePic = content.picUrl;
-            // console.log(placePic);
-
-            document.querySelector('.forecast').innerHTML = forecast;
-            document.querySelector('.max_temp').innerHTML = maxTemp;
-            document.querySelector('.low_temp').innerHTML = lowTemp;
-            document.querySelector('.place').innerHTML = cityName;
-            document.querySelector('.date').innerHTML = forecastDate;
-
-            // var myImage = new Image(360, 200);
-            // myImage.src = placePic;
-            // document.querySelector('.entry-img').appendChild(myImage);
-
-            return content;
+        // .then(content => {
+        //     console.log(content);
+        // })
+        .then(function gotData(data) {
+            updateUI('http://localhost:8080/all')
         })
         .catch(error => {
             console.error("error", error)
         })
 }
 
+const updateUI = async () =>　{
+    const request = await fetch('http://localhost:8081/all')
+    try　{
+        const allData = await request.json();
+        const lastEntry = allData[allData.length - 1];
+        if (lastEntry < 0) {
+            // no previous entries exist
+            return;
+        }
+        const forecast = lastEntry.forecast;
+        const forecastDate = lastEntry.forecastDate;
+        const maxTemp = lastEntry.maxTemp;
+        const lowTemp = lastEntry.lowTemp;
+        const cityName = lastEntry.cityName;
+        let placePic = lastEntry.picUrl;
+        // console.log(placePic);
+
+        document.querySelector('.forecast').innerHTML = forecast;
+        document.querySelector('.max_temp').innerHTML = maxTemp;
+        document.querySelector('.low_temp').innerHTML = lowTemp;
+        document.querySelector('.place').innerHTML = cityName;
+        document.querySelector('.date').innerHTML = forecastDate;
+
+        var myImage = new Image(360, 200);
+        myImage.src = placePic;
+        document.querySelector('.entry-img').appendChild(myImage);
+    
+
+    }　catch(error)　{
+        console.log("error", error);
+    }
+}
 
 export {
     handleSubmit

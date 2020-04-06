@@ -58,10 +58,10 @@ function sendData(req, res) {
 
 
 // POST ROUTE for geoname api
-// app.post('/location', async (req, res) => {
+// app.post('/addTrip', async (req, res) => {
 //     console.log(req.body)
 //     NewEntry = {
-//         lat: req.body.geonames.lat,
+//         forecast: data.forecast
 //     }
 //     projectData.push(NewEntry);
 //     res.send(projectData)
@@ -91,7 +91,7 @@ app.get('/location', async (request,response) => {
     const lat = firstLocation.lat;
 
     const weatherbitApiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${process.env.WEATHER_KEY}`;
-    console.log(weatherbitApiUrl);
+    // console.log(weatherbitApiUrl);
     const weatherFetchResponse = await fetch(weatherbitApiUrl);
     const weather = await weatherFetchResponse.json();
     // console.log(weather)
@@ -101,22 +101,16 @@ app.get('/location', async (request,response) => {
     const pixabayApiUrl =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${location}&image_type=photo&orientation=horizontal&category=places`;
     const pixabayFetchResponse = await fetch(pixabayApiUrl);
     const placePic = await pixabayFetchResponse.json();
-    $.getJSON(pixabayApiUrl, function(data){
-        if (parseInt(data.totalHits) > 0)
-            $.each(data.hits, function(i, hit){ console.log(hit.pageURL); });
-        else
-            console.log('No hits');
-        });
 
-    let newEntry = {
+    const newEntry = {
         forecast: weather.data[days].weather.description,
         lowTemp: weather.data[days].low_temp,
         maxTemp: weather.data[days].max_temp,
         cityName: weather.city_name,
         forecastDate: weather.data[days].datetime,
-        picUrl: placePic.hits[1].webformatURL
+        picUrl: placePic.hits[0].webformatURL
     }
-    console.log(pixabayApiUrl);
+    console.log(newEntry.picUrl);
     projectData.push(newEntry);
     response.json(newEntry);
 
