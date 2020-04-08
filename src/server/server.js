@@ -56,34 +56,21 @@ function sendData(req, res) {
     res.send(projectData);
 };
 
-
-// POST ROUTE for geoname api
-// app.post('/addTrip', async (req, res) => {
-//     console.log(req.body)
-//     NewEntry = {
-//         forecast: data.forecast
-//     }
-//     projectData.push(NewEntry);
-//     res.send(projectData)
-//     console.log(projectData)
-// });
-
-
 // GET route for api calls
 app.get('/location', async (request,response) => {
     const location = request.query.q;
     const days = request.query.days;
     // console.log(day);
 
-    const geoApi_url = `http://api.geonames.org/search?q=${location}&maxRows=10&username=${process.env.NGN_USERNAME}`;
+    const geoApiUrl = `http://api.geonames.org/search?q=${location}&maxRows=10&username=${process.env.NGN_USERNAME}`;
 
     const fetch_response = await fetch(
-        geoApi_url, {
+        geoApiUrl, {
             headers: {'Accept': "application/json"}
         }
     );
 
-    console.log(geoApi_url);
+    console.log(geoApiUrl);
     const json = await fetch_response.json();
     // TODO handle no results
     const firstLocation = json.geonames[0];
@@ -96,11 +83,11 @@ app.get('/location', async (request,response) => {
     const weather = await weatherFetchResponse.json();
     // console.log(weather)
     
-
-
     const pixabayApiUrl =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${location}&image_type=photo&orientation=horizontal&category=places`;
     const pixabayFetchResponse = await fetch(pixabayApiUrl);
     const placePic = await pixabayFetchResponse.json();
+    const placePicFirstResult = placePic.hits[0];
+    console.log(placePicFirstResult.webformatURL)
 
     const newEntry = {
         forecast: weather.data[days].weather.description,
@@ -108,12 +95,9 @@ app.get('/location', async (request,response) => {
         maxTemp: weather.data[days].max_temp,
         cityName: weather.city_name,
         forecastDate: weather.data[days].datetime,
-        picUrl: placePic.hits[0].webformatURL
+        picture: placePicFirstResult.webformatURL,
     }
     console.log(newEntry.picUrl);
     projectData.push(newEntry);
     response.json(newEntry);
-
-
-    
 })

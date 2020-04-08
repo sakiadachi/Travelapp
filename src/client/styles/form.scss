@@ -1,30 +1,41 @@
-$font-stack: 'Avenir','Helvetica Neue', sans-serif;
+
+$font-stack: 'Open Sans', sans-serif;
+$font-family-sansserif: 'Open Sans', sans-serif;
+$font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 16px;
 $borderstyle: 2px solid rgb(206, 206, 206);
-$yellow: #ffd700;
 $h2: 700;
 $h3: 600;
 
 
-#form{
 
-}
 
-#entry-form{
-    width: 40%;
-    background-color: white;
+.p-4{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
     padding: 15px;
     border-radius: 15px;
 }
+.form-location,
+.form-date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: center;
+}
+
 
 
 .location,
 .date{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     vertical-align: center;
+    color: $textcolor;
 }
 
 

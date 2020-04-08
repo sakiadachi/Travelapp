@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-const darksky = require('darkskyjs');
+
 
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -33,7 +33,30 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+                use: [
+                    {
+                    loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                    // Interprets `@import` and `url()` like `import/require()` and will resolve them
+                    loader: 'css-loader'
+                    },
+                    {
+                    // Loader for webpack to process CSS with PostCSS
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: function () {
+                        return [
+                            require('autoprefixer')
+                        ];
+                        }
+                    }
+                    },
+                    {
+                    // Loads a SASS/SCSS file and compiles it to CSS
+                    loader: 'sass-loader'
+                    }
+                ]
             },
         ]
     },
@@ -45,5 +68,9 @@ module.exports = {
         new MiniCssExtractPlugin({filename: '[name].css'
         }),
         new WorkboxPlugin.GenerateSW(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
     ]
 }

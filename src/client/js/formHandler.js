@@ -1,6 +1,4 @@
-const geonamesURL = 'http://localhost:8081/location'
-const darkSkyURL = 'http://localhost:8081/forecast/'
-// const darkSkyURL = 'https://api.darksky.net/forecast/'
+const geonamesURL = 'http://localhost:8081/location';
 
 // const post =[];
 
@@ -53,19 +51,27 @@ const updateUI = async () =>　{
         const maxTemp = lastEntry.maxTemp;
         const lowTemp = lastEntry.lowTemp;
         const cityName = lastEntry.cityName;
-        let placePic = lastEntry.picUrl;
+        const placePic = lastEntry.picture;
         // console.log(placePic);
 
+        function createElement() {
+            const newTrip = document.createElement('section');
+            const newContent = document.createTextNode('My trip to: ');
+            newTrip.appendChild(newContent);
+            
+        }
         document.querySelector('.forecast').innerHTML = forecast;
         document.querySelector('.max_temp').innerHTML = maxTemp;
         document.querySelector('.low_temp').innerHTML = lowTemp;
         document.querySelector('.place').innerHTML = cityName;
         document.querySelector('.date').innerHTML = forecastDate;
 
-        var myImage = new Image(360, 200);
-        myImage.src = placePic;
-        document.querySelector('.entry-img').appendChild(myImage);
-    
+        const image = document.images[0];
+        const downloadingImage = new Image();
+        downloadingImage.onload = function(){
+            image.src = this.src;   
+        };
+        downloadingImage.src = placePic;
 
     }　catch(error)　{
         console.log("error", error);

@@ -1,8 +1,11 @@
-$font-stack: 'Avenir','Helvetica Neue', sans-serif;
+
+$font-stack: 'Open Sans', sans-serif;
+$font-family-sansserif: 'Open Sans', sans-serif;
+$font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
 $borderstyle: 2px solid rgb(206, 206, 206);
-$yellow: #fff8bc;
+$main: #ede5cc;
 $h2: 700;
 $h3: 600;
 
@@ -39,7 +42,6 @@ button.save-trip,
 button.remove-trip{
     border-radius: 10px;
     border: $borderstyle;
-    background-color: white;
 }
 
 button.save-trip:hover,
