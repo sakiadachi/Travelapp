@@ -1,59 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-$font-stack: 'Open Sans', sans-serif;
-$font-family-sansserif: 'Open Sans', sans-serif;
+$font-stack: 'Montserrat', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
 $borderstyle: 2px solid rgb(206, 206, 206);
-$main: #ede5cc;
+$main: #f7f3e9;
 $h2: 700;
 $h3: 600;
 
 
-.entry-img{
-    width: auto;
+.card-img-top{
+    width: 100%;
     height: auto;
-}
-.title-entry{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    line-height: 5px;
-    font-weight: 600;
-    font-size: 1.6em;
-    padding-left: 20px;
-    padding-right: 20px;
-    border: $borderstyle;
-    border-radius: 5px;
-}
-.title-entry-two{
-    line-height: 1.45;
-    font-weight: 600;
-    font-size: 1.2em;
-    margin-top: 5px;
+    border-bottom: 15px solid transparent;
 }
 
 p{
-    text-align: right;
+    text-align: left;
+}
+h2 {
+    font-weight: $h2;
+}
+.card {
+    font-family: $font-stack;
+    // text-align: left;
+    width: 100%;
+    border:0;
+    margin: 50px 0 50px 0 ;
+    background-color: $main;
 }
 
-
-button.save-trip,
-button.remove-trip{
-    border-radius: 10px;
-    border: $borderstyle;
+h5.inline {
+    display: inline-block;
+    vertical-align: middle;
 }
-
-button.save-trip:hover,
-button.remove-trip:hover{
-    background-color: #003005;
-}
-
-.entry-container{
+.row-h1 {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 30px;
-    width: 100%;
+    font-size: 2.5em;
+    padding-left: 30px;
+
+}
+.card-body {
+    width:40%;
+    padding: 0;
+    border-radius: none;
+    border: 15px solid transparent;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+.column-left {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    // border-bottom: 2px solid $textcolor;
+    border-radius: none;
+
+}
+
+.card-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: $font-family-monospace;
+    border-radius: none;
+    padding: 3rem 0 3rem 0;
+    border-top: 1px solid $textcolor;
+    border-bottom: 1px solid $textcolor;
+    padding-left: 30px;
+    padding-right: 30px;
 }

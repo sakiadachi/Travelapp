@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-$font-stack: 'Open Sans', sans-serif;
-$font-family-sansserif: 'Open Sans', sans-serif;
+$font-stack: 'Montserrat', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
@@ -12,18 +12,20 @@ $enable-responsive-font-sizes: true;
 
 /* Header */
 .navbar {
-    
-    padding: 20px;
-    background-color: $main;
+    padding: 10px 30px 10px 30px;
+    // background-color: $main;
 }
+
 
 .pos-f-t {
     border-bottom: 1px solid $textcolor;
+    // margin-bottom: 40px;
 }
 
 a.navbar-brand {
-    font-size: 1.4em;
+    font-size: 1.3em;
     color: $textcolor;
+    // position: left 30px;
 }
 
 /* humbargar icon */

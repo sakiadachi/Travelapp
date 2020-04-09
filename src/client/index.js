@@ -3,10 +3,6 @@ import './styles/header.scss'
 import './styles/form.scss'
 import './styles/footer.scss'
 import './styles/entry.scss'
-import 'bootstrap'
-import 'bootstrap/js/dist/util';
-import 'bootstrap/js/dist/dropdown';
-
 
 import { handleSubmit } from './js/formHandler'
 

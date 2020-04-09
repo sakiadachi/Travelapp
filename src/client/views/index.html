@@ -5,89 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Journal app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-
 <body>
-    <div class="container">
         <header>
-            <div class="pos-f-t">
                 <nav class="navbar">
                     <a class="navbar-brand" href="#">Travel Journal</a>
                     <button class="navbar-toggler" data-target="#navbarToggleExternalContent" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                       <span class="line"></span> 
-                       <span class="line"></span> 
-                       <span class="line"></span>
-                   </button>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </button>
                 </nav>
-                <div class="collapse" id="navbarToggleExternalContent">
-                    <div class="p-4">
-                        <!-- <h5>Save your trip</h5> -->
-                        <form id="entry-form">
-                            <div class="form-location">
-                                <label for="location">My trip to: </label>
-                                <input type="text" id="location" name="location" placeholder="enter location" required>
+                <div class="pos-f-t">
+                    <div class="collapse" id="navbarToggleExternalContent">
+                      <div class="p-4">
+                        
+                      </div>
+                    </div>
+              </div>
+
+                <form id="entry-form">
+                    <div class="row-bw">
+                        <div class="form-location">
+                            <label for="location">My trip to: </label>
+                            <input type="text" id="location" name="location" placeholder="enter location" required>
+                        </div>
+
+                        <div class="form-date">
+                            <label for="date">Departing: </label>
+                            <input type="date" id="date" name="deperture-date" required>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <button type="submit" id="form-submit" name value="Save your trip!">＋ add trip</button>
+                    </div>
+                </form>
+
+            </header>
+
+            <section id="entry">
+
+
+            <!-- <div class="card">
+                    <div class="row-h1">
+                            My trip to:
+                        <div class="place"></div>, 
+                        <div class="date"></div>
+                    </div>
+                <div class="card-row">
+                    <div class="card-body">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="column">
+                            <button type="button" class="btn">Add Lodging info</button>
+                            <button type="button" class="btn">Add Notes</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="column">
+                            <h5 class="inline">Your Trip is<div id="count-days"></div> days away</h5>
+                       
+                            <h5 class="inline">Typical weather for then is: 
+                                <div class="weather">
+                                    <div class="forecast"></div>
+                                    <div class="max_temp"></div>
+                                    <div class="low_temp"></div>
+                                </div>
+                            </h5>
                             </div>
+                    </div>
+                </div> -->
                 
-                            <div class="form-date">
-                                <label for="date">Departing: </label>
-                                <input type="date" id="date" name="deperture-date" value="yyyy-MM-dd" required>
-                            </div>
-                            <button type="submit" id="form-submit" name value="Save your trip!">Save your trip</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <section id="entry">
-            <div class="entry-container">
-                <div class="entry-img">
-                </div>
-                <div class="entry-text">
-                    <div class="title-entry">
-
-                        <div class="place">
-                            <p>My trip to: </p>
-                        </div>
-
-                        <div class="date">
-                            <p>Departing: </p>
-                        </div>
-                    </div>
-
-                    <!-- <div class="flight">
-                        <div class="title-entry-two">flight info:
-                        </div>
-                        <div class="flight info">
-                            <p>HND 03:00PM
-                                <br>Flight707 AAA AIR</p>
-                            <p>HND 03:00PM
-                                <br>Flight707 AAA AIR</p>
-                        </div>
-                    </div> -->
-
-                    <div class="infomation">
-                        <div class="location"></div> 
-                        <p> is</p>
-                        <div id="count-days"></div>
-                        <p> days away</p>
-                    </div>
-
-                    <div class="weather">
-                        <div class="title-entry-two">Typical weather for then is: </div>
-                            <div class="forecast"></div>
-                            <div class="max_temp"></div>
-                            <div class="low_temp"></div>
-                    </div>
-                </div>
             </div>
         </section>
-    </div>
 
-    <!-- <footer>
+    <footer>
         <a href="#title">To top</a>
-    </footer> -->
-
+    </footer>
+<!-- 
     <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
@@ -96,8 +91,10 @@
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
-    </script>
-    <script type="text/javascript" src="main.js"></script>
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 

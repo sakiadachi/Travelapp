@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 
-
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -18,7 +17,8 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: '8080'
+        port: '8080',
+        stats: { chunks: false }
     },
     output: {
         libraryTarget: 'var',
@@ -33,30 +33,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                    loader: MiniCssExtractPlugin.loader
-                    },
-                    {
-                    // Interprets `@import` and `url()` like `import/require()` and will resolve them
-                    loader: 'css-loader'
-                    },
-                    {
-                    // Loader for webpack to process CSS with PostCSS
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: function () {
-                        return [
-                            require('autoprefixer')
-                        ];
-                        }
-                    }
-                    },
-                    {
-                    // Loads a SASS/SCSS file and compiles it to CSS
-                    loader: 'sass-loader'
-                    }
-                ]
+                use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
             },
         ]
     },
@@ -68,9 +45,5 @@ module.exports = {
         new MiniCssExtractPlugin({filename: '[name].css'
         }),
         new WorkboxPlugin.GenerateSW(),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        })
     ]
 }

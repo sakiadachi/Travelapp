@@ -4,52 +4,78 @@ $font-family-sansserif: 'Open Sans', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 16px;
-$borderstyle: 2px solid rgb(206, 206, 206);
+$main: #f7f3e9;
 $h2: 700;
 $h3: 600;
-
-
 
 
 .p-4{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     padding: 15px;
-    border-radius: 15px;
+    // border-bottom: 1px solid $textcolor;
 }
-.form-location,
-.form-date {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    vertical-align: center;
-}
-
-
-
-.location,
-.date{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    vertical-align: center;
-    color: $textcolor;
-}
-
-
-.title-form{
+#entry-form {
     display: block;
-    text-align: left;
-    font-weight: 600;
-    font-size: 1.5em;
-    margin-right: 20px
+    justify-content: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid $textcolor;
+}
+
+/* input */
+label {
+    margin-right: 10px;
+}
+input[type=text],
+input#date {
+    border: none;
+    border-bottom: 2px solid red;
+    background-color: $main;
+}
+
+input#location {
+    color: $textcolor;
+    margin-bottom: 10px;
+    background-color: $main;
 }
 
 
 /* put Hover state later*/
+button{
+    color: $textcolor;
+    font-size: 1em;
+    font-weight: $h3;
+    border: 1px solid $textcolor;
+    padding: 0.2em 0.8em 0.2em 0.8em ;
+}
 
+
+button#form-submit {
+    width: 20rem;
+    margin-top: 20px;
+    background-color: $main;
+
+}
 button#form-submit:hover{
-    border: 2px solid #333;
+    background-color: rgb(218, 218, 218);
+}
+
+.btn {
+    border: 1px solid $textcolor;
+    padding: 0.2em 0.8em 0.2em 0.8em ;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.row-bw {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 2em;
+    padding: 0px 30px;
+}
+.center {
+    text-align: center;
 }

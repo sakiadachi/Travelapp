@@ -12,7 +12,21 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: '8080'
+        port: '8080',
+        stats: {
+            assets: false,
+            children: false,
+            chunks: false,
+            hash: false,
+            modules: false,
+            publicPath: false,
+            timings: false,
+            version: false,
+            warnings: true,
+            colors: {
+                green: '\u001b[32m'
+            }
+        }
     },
     output: {
         libraryTarget: 'var',
@@ -27,31 +41,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    {
-                      // Adds CSS to the DOM by injecting a `<style>` tag
-                      loader: 'style-loader'
-                    },
-                    {
-                      // Interprets `@import` and `url()` like `import/require()` and will resolve them
-                      loader: 'css-loader'
-                    },
-                    {
-                      // Loader for webpack to process CSS with PostCSS
-                      loader: 'postcss-loader',
-                      options: {
-                        plugins: function () {
-                          return [
-                            require('autoprefixer')
-                          ];
-                        }
-                      }
-                    },
-                    {
-                      // Loads a SASS/SCSS file and compiles it to CSS
-                      loader: 'sass-loader'
-                    }
-                  ]
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             },
       ]
     },
@@ -69,10 +59,6 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
-        new webpack.ProvidePlugin({
-          $: 'jquery',
-          jQuery: 'jquery'
-        })
         
     ]
 }
