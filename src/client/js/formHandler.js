@@ -8,27 +8,24 @@ async function handleSubmit(event) {
     // check what text was put into the form field
     const location = document.getElementById('location').value;
     // valueAsNumber returns milliseconds, so we divide by 1000
-    let date = document.getElementById('date').valueAsNumber / 1000;
+    let date = document.getElementById('date').value;
+    let dateDevided = document.getElementById('date').valueAsNumber / 1000;
     console.log(date);
     // get current day
     let ts = Math.round((new Date()).getTime() / 1000);
 
-    let diffDays = Math.round(Math.abs(date - ts) / 86400);
+    let diffDays = Math.round(Math.abs(dateDevided - ts) / 86400);
 
+    //add new card
     const newDiv = document.createElement('div');
     const att = document.createAttribute("class");  
     att.value = "card"; 
     newDiv.setAttributeNode(att);
 
-    const p = document.createElement('p');
-    p.innerText= diffDays +"DAYO";
-    newDiv.appendChild(p);
-
+    //add new card
+    
     const entrySection = document.getElementById("entry");
     entrySection.appendChild(newDiv);
-
-    
-
 
     console.log(diffDays);  
 
@@ -43,96 +40,225 @@ async function handleSubmit(event) {
         })
         .then(content => {
             console.log(content);
-            for (let i = 0; i < content.length; i++) {
+            JSON.stringify(content);
+            // const count = Object.keys(content).length;
+
+
+            // for (let i = 0; i < count; i++) {
             const newElement = document.createElement('p');
-            newElement.innerText = 'This is paragraph number ' + content[i];
-            const newCard = document.createElement('div');
+            // newElement.innerText = 'This is ' + JSON.stringify(content[i]);
+
+            const section = document.getElementById('entry');
+            const newCard = document.querySelector('.card');
             newCard.appendChild(newElement);
-            document.body.appendChild(newCard);
+            section.appendChild(newCard);
+
+            const forecast = content.forecast;
+            const forecastDate = content.forecastDate;
+            const maxTemp = content.maxTemp;
+            const lowTemp = content.lowTemp;
+            const cityName = content.cityName;
+            const placePic = content.picture;
+
+            // create trip title
+            const tripTitle = document.createElement('div');
+            tripTitle.className = 'row-h1'
+            tripTitle.innerHTML = 'Your Trip to ' + cityName +',  Departing: ' +forecastDate;
+            newDiv.appendChild(tripTitle);
+
+            const rowdiv = document.createElement('div');
+            rowdiv.className = 'card-row';
+            newCard.appendChild(rowdiv);
+            
 
 
-            }
+            // create column div
+            const columnDiv = document.createElement('div');
+            columnDiv.className = 'column';
+            rowdiv.appendChild(columnDiv);
+
+            const placeImg = document.createElement('img')
+            placeImg.src = `${placePic}`;
+            placeImg.alt = `${cityName}.img`
+            placeImg.className = "card-img-top";
+            
+            columnDiv.appendChild(placeImg);
+
+            // create column div2
+            const columnDiv2 = document.createElement('div');
+            columnDiv2.className = 'column';
+            rowdiv.appendChild(columnDiv2);
+
+            const newForecast = document.createElement('p');
+            newForecast.innerText = "Typical weather for then is: " +forecast;
+            const newTemp = document.createElement('p');
+            newTemp.innerText = "High: " + maxTemp + " degree, Low: " +lowTemp +" degree";
+
+            const p = document.createElement('p');
+            p.innerText= "Your trip is "+ diffDays +" days away";
+        
+
+            columnDiv2.appendChild(newForecast);
+            columnDiv2.appendChild(newTemp);
+            columnDiv2.appendChild(p);
+
+            // create tasker div
+            const task = document.createElement('div');
+            task.className = 'tasker';
+            task.id ='tasker';
+            columnDiv2.appendChild(task);
+
+            // create error div
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.id ='error';
+            errorDiv.innerText = "error";
+            task.appendChild(errorDiv);
+
+            // create tasker-header div
+            const taskHeader = document.createElement('div');
+            taskHeader.className = 'tasker-header';
+            taskHeader.id ='tasker-header';
+            
+            task.appendChild(taskHeader);
+
+            const taskInput = document.createElement("input");
+            taskInput.setAttribute("type", "text");
+            taskInput.id= "input-task";
+            taskInput.setAttribute("placeholder", "Enter a ToDo List");
+            taskHeader.appendChild(taskInput);
+
+            //create Button
+            const taskButton = document.createElement("button");
+            taskButton.innerHTML = "+";
+            taskButton.id = "add-task-btn";
+
+            taskHeader.appendChild(taskButton);
+
+            // create tasker-header div
+            const taskBody = document.createElement('div');
+            taskBody.className = 'tasker-body';
+            
+            const taskBodyUl = document.createElement('ul');
+            taskBodyUl.id= "tasks";
+            taskBody.appendChild(taskBodyUl);
+            task.appendChild(taskBody);
 
 
+
+
+
+
+
+
+
+            rowdiv.appendChild(columnDiv2);
+
+
+            (function() {
+                'use strict';
+                var tasker = {
+                    init: function() {
+                        this.cacheDom();
+                        this.bindEvents();
+                        this.evalTasklist();
+                    },
+                    cacheDom: function() {
+                        this.taskInput = document.getElementById("input-task");
+                        this.addBtn = document.getElementById("add-task-btn");
+                        this.tasklist = document.getElementById("tasks");
+                        this.tasklistChildren = this.tasklist.children;
+                        this.errorMessage = document.getElementById("error");
+                    },
+                    bindEvents: function() {
+                        this.addBtn.onclick = this.addTask.bind(this);
+                        this.taskInput.onkeypress = this.enterKey.bind(this);
+                    },
+                    evalTasklist: function() {
+                        var i, chkBox, delBtn;
+                        //BIND CLICK EVENTS TO ELEMENTS
+                        for (i = 0; i < this.tasklistChildren.length; i += 1) {
+                            //ADD CLICK EVENT TO CHECKBOXES
+                            chkBox = this.tasklistChildren[i].getElementsByTagName("input")[0];
+                            chkBox.onclick = this.completeTask.bind(this, this.tasklistChildren[i], chkBox);
+                            //ADD CLICK EVENT TO DELETE BUTTON
+                            delBtn = this.tasklistChildren[i].getElementsByTagName("button")[0];
+                            delBtn.onclick = this.delTask.bind(this, i);
+                        }
+                    },
+                    render: function() {
+                        var taskLi, taskChkbx, taskVal, taskBtn, taskTrsh;
+                        //BUILD HTML
+                        taskLi = document.createElement("li");
+                        taskLi.setAttribute("class", "task");
+                        //CHECKBOX
+                        taskChkbx = document.createElement("input");
+                        taskChkbx.setAttribute("type", "checkbox");
+                        //USER TASK
+                        taskVal = document.createTextNode(this.taskInput.value);
+                        //DELETE BUTTON
+                        taskBtn = document.createElement("button");
+                        //TRASH ICON
+                        taskTrsh = document.createElement("i");
+                        taskTrsh.setAttribute("class", "fa fa-trash");
+                        //INSTERT TRASH CAN INTO BUTTON
+                        taskBtn.appendChild(taskTrsh);
+            
+                        //APPEND ELEMENTS TO TASKLI
+                        taskLi.appendChild(taskChkbx);
+                        taskLi.appendChild(taskVal);
+                        taskLi.appendChild(taskBtn);
+            
+                        //ADD TASK TO TASK LIST
+                        this.tasklist.appendChild(taskLi);
+            
+                    },
+                    completeTask: function(i, chkBox) {
+                        if (chkBox.checked) {
+                            i.className = "task completed";
+                        } else {
+                            this.incompleteTask(i);
+                        }
+                    },
+                    incompleteTask: function(i) {
+                        i.className = "task";
+                    },
+                    enterKey: function(event) {
+                        if (event.keyCode === 13 || event.which === 13) {
+                            this.addTask();
+                        }
+                    },
+                    addTask: function() {
+                        var value = this.taskInput.value;
+                        this.errorMessage.style.display = "none";
+            
+                        if (value === "") {
+                            this.error();
+                        } else {
+                            this.render();
+                            this.taskInput.value = "";
+                            this.evalTasklist();
+                        }
+                    },
+                    delTask: function(i) {
+                        this.tasklist.children[i].remove();
+                        this.evalTasklist();
+                    },
+                    error: function() {
+                        this.errorMessage.style.display = "block";
+                    }
+                };
+            
+                tasker.init();
+            }());
 
 
         })
-        // .then(function gotData(data) {
-        //     updateUI()
-        // })
         .catch(error => {
             console.error("error", error)
         })
 }
-// const updateUI = async() => {
-//     const myCustomDiv = document.createElement('div');
 
-// for (let i = 1; i <= 200; i++) {
-//   const newElement = document.createElement('p');
-//   newElement.innerText = 'This is paragraph number ' + i;
-
-//   myCustomDiv.appendChild(newElement);
-// }
-
-// document.body.appendChild(myCustomDiv);
-// }
-// const updateUI = async () =>　{
-//     const request = await fetch('http://localhost:8081/all')
-//     try　{
-//         const allData = await request.json();
-//         const lastEntry = allData[allData.length - 1];
-//         if (lastEntry < 0) {
-//             // no previous entries exist
-//             return;
-//         }
-//         const forecast = lastEntry.forecast;
-//         const forecastDate = lastEntry.forecastDate;
-//         const maxTemp = lastEntry.maxTemp;
-//         const lowTemp = lastEntry.lowTemp;
-//         const cityName = lastEntry.cityName;
-//         const placePic = lastEntry.picture;
-//         // console.log(placePic);
-
-//         function addElement() {
-
-//             const section = document.getElementById('entry');
-//             const card = document.createElement('div');
-
-//             // create a couple of elements in an otherwise empty HTML page
-//             const heading = document.createElement('h1');
-//             const heading_text = document.createTextNode("Your Trip to: " + cityName + " , Date: " + forecastDate);
-//             heading.appendChild(heading_text);
-//             card.appendChild(heading);
-
-//             const tempP = document.createElement('p');
-//             const tempP_text = document.createTextNode("Typical weather for then is: " + forecast + ", High " +maxTemp+", Low " +lowTemp);
-//             tempP.appendChild(tempP_text);
-//             card.appendChild(tempP);
-
-//             section.appendChild('card');
-//          }
-
-
-//         // document.querySelector('.forecast').innerHTML = forecast;
-//         // document.querySelector('.max_temp').innerHTML = maxTemp;
-//         // document.querySelector('.low_temp').innerHTML = lowTemp;
-//         // document.querySelector('.place').innerHTML = cityName;
-//         // document.querySelector('.date').innerHTML = forecastDate;
-
-//         const image = document.images[0];
-//         const downloadingImage = new Image();
-//         downloadingImage.onload = function(){
-//             image.src = this.src;   
-//         };
-//         downloadingImage.src = placePic;
-
-
-//     }
-
-//     catch(error)　{
-//         console.log("error", error);
-//     }
-// }
 
 export {
     handleSubmit

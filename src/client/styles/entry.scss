@@ -5,11 +5,65 @@ $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
 $borderstyle: 2px solid rgb(206, 206, 206);
-$main: #f7f3e9;
-$h2: 700;
-$h3: 600;
+// $main: #f7f3e9;
+
+.row-h1 {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3em;
+    padding-left: 30px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: $font-family-monospace;
+    border-radius: none;
+    border-top: 3px solid $textcolor;
+    border-bottom: 1px solid $textcolor;
+    padding: 2rem 30px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    text-align: left;
+}
 
 
+
+@media (min-width:600px) {
+    .row-h1 {
+        display: flex;
+        flex-direction: row;
+        font-size: 2.2em;
+        padding-left: 30px;
+    }
+
+    .card-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: $font-family-monospace;
+        border-radius: none;
+        border-top: 3px solid $textcolor;
+        border-bottom: 1px solid $textcolor;
+        padding: 2rem 30px;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width:45%;
+        text-align: left;
+    }
+
+
+}
 .card-img-top{
     width: 100%;
     height: auto;
@@ -17,31 +71,25 @@ $h3: 600;
 }
 
 p{
+    font-family: $font-stack;
+    font-size: 1em;
     text-align: left;
 }
-h2 {
-    font-weight: $h2;
-}
+
 .card {
     font-family: $font-stack;
-    // text-align: left;
     width: 100%;
     border:0;
-    margin: 50px 0 50px 0 ;
-    background-color: $main;
+    margin: 0 ;
+    background-color: #f1f1f1;
 }
 
-h5.inline {
+h5{
+    font-family: $font-stack;
     display: inline-block;
     vertical-align: middle;
 }
-.row-h1 {
-    display: flex;
-    flex-direction: row;
-    font-size: 2.5em;
-    padding-left: 30px;
 
-}
 .card-body {
     width:40%;
     padding: 0;
@@ -49,30 +97,4 @@ h5.inline {
     border: 15px solid transparent;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-}
-.column-left {
-    display: flex;
-    flex-direction: row;
-    text-align: left;
-    // border-bottom: 2px solid $textcolor;
-    border-radius: none;
 
-}
-
-.card-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: $font-family-monospace;
-    border-radius: none;
-    padding: 3rem 0 3rem 0;
-    border-top: 1px solid $textcolor;
-    border-bottom: 1px solid $textcolor;
-    padding-left: 30px;
-    padding-right: 30px;
-}
