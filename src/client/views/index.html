@@ -7,61 +7,57 @@
     <title>Travel Journal app</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
-        <header>
-                <nav class="navbar">
-                    <a class="navbar-brand" href="#">Travel Journal</a>
-                    <button class="navbar-toggler" data-target="#navbarToggleExternalContent" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="line"></span>
-                        <span class="line"></span>
-                        <span class="line"></span>
-                    </button>
-                </nav>
-                <div class="pos-f-t">
-                    <div class="collapse" id="navbarToggleExternalContent">
-                      <div class="p-4">
-                        
-                      </div>
-                    </div>
-              </div>
+    <header>
+        <nav class="navbar">
+            <a class="navbar-brand" href="#">Travel Journal</a>
+            <button class="navbar-toggler" data-target="#navbarToggleExternalContent" data-toggle="collapse" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </nav>
+        <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="p-4">
 
-                <form id="entry-form">
-                    <div class="row-bw">
-                        <div class="form-location">
-                            <label for="location">My trip to: </label>
-                            <input type="text" id="location" name="location" placeholder="enter location" required>
-                        </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="form-date">
-                            <label for="date">Departing: </label>
-                            <input type="date" id="date" name="deperture-date" required>
-                        </div>
-                    </div>
-                    <div class="center">
-                        <button type="submit" id="form-submit" name value="Save your trip!">＋ add trip</button>
-                    </div>
-                </form>
+        <form id="entry-form">
+            <div class="row-bw">
+                <div class="form-location">
+                    <label for="location">My trip to: </label>
+                    <input type="text" id="location" name="location" placeholder="enter location" required>
+                </div>
 
-            </header>
+                <div class="form-date">
+                    <label for="date">Departing: </label>
+                    <input type="date" id="date" name="deperture-date" required>
+                </div>
+            </div>
+            <div class="center">
+                <button type="submit" id="form-submit" name value="Save your trip!">＋ add trip</button>
+            </div>
+        </form>
 
-            <section id="entry">
-                <!-- <div id="tasker" class="tasker">
-                    <div id="error" class="error">Please enter a task</div>
-                    <div id="tasker-header" class="tasker-header">
-                        <input type="text" id="input-task" placeholder="Enter a task">
-                        <button id="add-task-btn"><i class="fa fa-fw fa-plus"></i>
-                        </button>
-                    </div>
-                    <div class="tasker-body">
-                        <ul id="tasks"></ul>
-                    </div>
-                </div> -->
-           </section>
+    </header>
+
+    <section id="entry">
+
+    </section>
 
     <footer>
         <a href="#title">To top</a>
     </footer>
-<!-- 
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
@@ -70,11 +66,7 @@
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
-    </script> -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    </script>
 </body>
 
 </html>

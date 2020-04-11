@@ -1,6 +1,8 @@
 const geonamesURL = 'http://localhost:8081/location';
 
-// const post =[];
+function getDiffDay(dateDivided, ts) {
+    return Math.round(Math.abs(dateDivided - ts) / 86400);
+}
 
 async function handleSubmit(event) {
     event.preventDefault()
@@ -9,31 +11,26 @@ async function handleSubmit(event) {
     const location = document.getElementById('location').value;
     // valueAsNumber returns milliseconds, so we divide by 1000
     let date = document.getElementById('date').value;
-    let dateDevided = document.getElementById('date').valueAsNumber / 1000;
-    console.log(date);
+    let dateDivided = document.getElementById('date').valueAsNumber / 1000;
+
     // get current day
     let ts = Math.round((new Date()).getTime() / 1000);
+    // get remain date for trip
+    let diffDays = getDiffDay(dateDivided, ts);
 
-    let diffDays = Math.round(Math.abs(dateDevided - ts) / 86400);
 
     //add new card
     const newDiv = document.createElement('div');
-    const att = document.createAttribute("class");  
-    att.value = "card"; 
+    const att = document.createAttribute("class");
+    att.value = "card";
     newDiv.setAttributeNode(att);
 
-    //add new card
-    
     const entrySection = document.getElementById("entry");
     entrySection.appendChild(newDiv);
 
-    console.log(diffDays);  
-
     const locationFetchUrl = `${geonamesURL}?q=${location}&days=${diffDays}`;
-    // console.log(locationFetchUrl)
-    await fetch(locationFetchUrl,
-        {
-        method: "GET",
+    await fetch(locationFetchUrl, {
+            method: "GET",
         })
         .then(res => {
             return res.json();
@@ -41,12 +38,8 @@ async function handleSubmit(event) {
         .then(content => {
             console.log(content);
             JSON.stringify(content);
-            // const count = Object.keys(content).length;
 
-
-            // for (let i = 0; i < count; i++) {
             const newElement = document.createElement('p');
-            // newElement.innerText = 'This is ' + JSON.stringify(content[i]);
 
             const section = document.getElementById('entry');
             const newCard = document.querySelector('.card');
@@ -63,14 +56,12 @@ async function handleSubmit(event) {
             // create trip title
             const tripTitle = document.createElement('div');
             tripTitle.className = 'row-h1'
-            tripTitle.innerHTML = 'Your Trip to ' + cityName +',  Departing: ' +forecastDate;
+            tripTitle.innerHTML = 'Your Trip to ' + cityName + ',  Departing: ' + forecastDate;
             newDiv.appendChild(tripTitle);
 
             const rowdiv = document.createElement('div');
             rowdiv.className = 'card-row';
             newCard.appendChild(rowdiv);
-            
-
 
             // create column div
             const columnDiv = document.createElement('div');
@@ -81,7 +72,7 @@ async function handleSubmit(event) {
             placeImg.src = `${placePic}`;
             placeImg.alt = `${cityName}.img`
             placeImg.className = "card-img-top";
-            
+
             columnDiv.appendChild(placeImg);
 
             // create column div2
@@ -90,13 +81,13 @@ async function handleSubmit(event) {
             rowdiv.appendChild(columnDiv2);
 
             const newForecast = document.createElement('p');
-            newForecast.innerText = "Typical weather for then is: " +forecast;
+            newForecast.innerText = "Typical weather for then is: " + forecast;
             const newTemp = document.createElement('p');
-            newTemp.innerText = "High: " + maxTemp + " degree, Low: " +lowTemp +" degree";
+            newTemp.innerText = "High: " + maxTemp + " degree, Low: " + lowTemp + " degree";
 
             const p = document.createElement('p');
-            p.innerText= "Your trip is "+ diffDays +" days away";
-        
+            p.innerText = "Your trip is " + diffDays + " days away";
+
 
             columnDiv2.appendChild(newForecast);
             columnDiv2.appendChild(newTemp);
@@ -105,26 +96,26 @@ async function handleSubmit(event) {
             // create tasker div
             const task = document.createElement('div');
             task.className = 'tasker';
-            task.id ='tasker';
+            task.id = 'tasker';
             columnDiv2.appendChild(task);
 
             // create error div
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error';
-            errorDiv.id ='error';
+            errorDiv.id = 'error';
             errorDiv.innerText = "error";
             task.appendChild(errorDiv);
 
             // create tasker-header div
             const taskHeader = document.createElement('div');
             taskHeader.className = 'tasker-header';
-            taskHeader.id ='tasker-header';
-            
+            taskHeader.id = 'tasker-header';
+
             task.appendChild(taskHeader);
 
             const taskInput = document.createElement("input");
             taskInput.setAttribute("type", "text");
-            taskInput.id= "input-task";
+            taskInput.id = "input-task";
             taskInput.setAttribute("placeholder", "Enter a ToDo List");
             taskHeader.appendChild(taskInput);
 
@@ -138,20 +129,11 @@ async function handleSubmit(event) {
             // create tasker-header div
             const taskBody = document.createElement('div');
             taskBody.className = 'tasker-body';
-            
+
             const taskBodyUl = document.createElement('ul');
-            taskBodyUl.id= "tasks";
+            taskBodyUl.id = "tasks";
             taskBody.appendChild(taskBodyUl);
             task.appendChild(taskBody);
-
-
-
-
-
-
-
-
-
             rowdiv.appendChild(columnDiv2);
 
 
@@ -198,20 +180,17 @@ async function handleSubmit(event) {
                         taskVal = document.createTextNode(this.taskInput.value);
                         //DELETE BUTTON
                         taskBtn = document.createElement("button");
-                        //TRASH ICON
-                        taskTrsh = document.createElement("i");
-                        taskTrsh.setAttribute("class", "fa fa-trash");
                         //INSTERT TRASH CAN INTO BUTTON
                         taskBtn.appendChild(taskTrsh);
-            
+
                         //APPEND ELEMENTS TO TASKLI
                         taskLi.appendChild(taskChkbx);
                         taskLi.appendChild(taskVal);
                         taskLi.appendChild(taskBtn);
-            
+
                         //ADD TASK TO TASK LIST
                         this.tasklist.appendChild(taskLi);
-            
+
                     },
                     completeTask: function(i, chkBox) {
                         if (chkBox.checked) {
@@ -231,7 +210,7 @@ async function handleSubmit(event) {
                     addTask: function() {
                         var value = this.taskInput.value;
                         this.errorMessage.style.display = "none";
-            
+
                         if (value === "") {
                             this.error();
                         } else {
@@ -248,7 +227,7 @@ async function handleSubmit(event) {
                         this.errorMessage.style.display = "block";
                     }
                 };
-            
+
                 tasker.init();
             }());
 
@@ -262,4 +241,8 @@ async function handleSubmit(event) {
 
 export {
     handleSubmit
+}
+
+export {
+    getDiffDay
 }

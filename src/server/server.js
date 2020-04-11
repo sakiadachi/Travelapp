@@ -1,19 +1,14 @@
 // /* Global Variables */
-
 const dotenv = require('dotenv');
 dotenv.config();
 const fetch = require('node-fetch');
-
-/* darkSkyAPI */
-
-/*PIXABay API */
 
 var path = require('path')
 var filename = path.basename('../dist/index.html')
 console.log(filename)
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = [];
+let projectData = [];
 
 // Require Express to run server and routes
 const express = require('express');
@@ -39,8 +34,9 @@ app.use(express.static('dist'));
 const port = 8081;
 
 const server = app.listen(port, listening);
- function listening(){
-     // Callback to debug
+
+function listening() {
+    // Callback to debug
     console.log(`running on localhost: ${port}`);
 };
 
@@ -57,20 +53,20 @@ function sendData(req, res) {
 };
 
 // GET route for api calls
-app.get('/location', async (request,response) => {
+app.get('/location', async (request, response) => {
     const location = request.query.q;
     const days = request.query.days;
-    // console.log(day);
 
     const geoApiUrl = `http://api.geonames.org/search?q=${location}&maxRows=10&username=${process.env.NGN_USERNAME}`;
 
     const fetch_response = await fetch(
         geoApiUrl, {
-            headers: {'Accept': "application/json"}
+            headers: {
+                'Accept': "application/json"
+            }
         }
     );
 
-    console.log(geoApiUrl);
     const json = await fetch_response.json();
     // TODO handle no results
     const firstLocation = json.geonames[0];
@@ -78,16 +74,13 @@ app.get('/location', async (request,response) => {
     const lat = firstLocation.lat;
 
     const weatherbitApiUrl = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${process.env.WEATHER_KEY}`;
-    // console.log(weatherbitApiUrl);
     const weatherFetchResponse = await fetch(weatherbitApiUrl);
     const weather = await weatherFetchResponse.json();
-    // console.log(weather)
-    
-    const pixabayApiUrl =`https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${location}&image_type=photo&orientation=horizontal&category=places`;
+
+    const pixabayApiUrl = `https://pixabay.com/api/?key=${process.env.PIX_KEY}&q=${location}&image_type=photo&orientation=horizontal&category=places`;
     const pixabayFetchResponse = await fetch(pixabayApiUrl);
     const placePic = await pixabayFetchResponse.json();
     const placePicFirstResult = placePic.hits[0];
-    console.log(placePicFirstResult.webformatURL)
 
     const newEntry = {
         forecast: weather.data[days].weather.description,
@@ -97,7 +90,6 @@ app.get('/location', async (request,response) => {
         forecastDate: weather.data[days].datetime,
         picture: placePicFirstResult.webformatURL,
     }
-    console.log(newEntry.picUrl);
     projectData.push(newEntry);
     response.json(newEntry);
 })
