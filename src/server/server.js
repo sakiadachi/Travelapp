@@ -52,6 +52,7 @@ function sendData(req, res) {
     res.send(projectData);
 };
 
+
 // GET route for api calls
 app.get('/location', async (request, response) => {
     const location = request.query.q;
@@ -82,7 +83,14 @@ app.get('/location', async (request, response) => {
     const placePic = await pixabayFetchResponse.json();
     const placePicFirstResult = placePic.hits[0];
 
-    const newEntry = {
+    const newEntry = getNewEntry(days, weather, placePicFirstResult);
+    projectData.push(newEntry);
+    response.json(newEntry);
+})
+
+
+function getNewEntry(days, weather, placePicFirstResult) {
+    return {
         forecast: weather.data[days].weather.description,
         lowTemp: weather.data[days].low_temp,
         maxTemp: weather.data[days].max_temp,
@@ -90,6 +98,6 @@ app.get('/location', async (request, response) => {
         forecastDate: weather.data[days].datetime,
         picture: placePicFirstResult.webformatURL,
     }
-    projectData.push(newEntry);
-    response.json(newEntry);
-})
+};
+
+module.exports ={getNewEntry}

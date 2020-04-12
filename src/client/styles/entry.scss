@@ -4,7 +4,6 @@ $font-stack: 'Montserrat', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
-$borderstyle: 2px solid rgb(206, 206, 206);
 
 .row-h1 {
     display: flex;
@@ -32,8 +31,6 @@ $borderstyle: 2px solid rgb(206, 206, 206);
     text-align: left;
 }
 
-
-
 @media (min-width:600px) {
     .row-h1 {
         display: flex;
@@ -60,9 +57,8 @@ $borderstyle: 2px solid rgb(206, 206, 206);
         width:45%;
         text-align: left;
     }
-
-
 }
+
 .card-img-top{
     width: 100%;
     height: auto;
@@ -95,5 +91,3 @@ h5{
     border-radius: none;
     border: 15px solid transparent;
 }
-
-

@@ -18,7 +18,6 @@ async function handleSubmit(event) {
     // get remain date for trip
     let diffDays = getDiffDay(dateDivided, ts);
 
-
     //add new card
     const newDiv = document.createElement('div');
     const att = document.createAttribute("class");
@@ -36,7 +35,6 @@ async function handleSubmit(event) {
             return res.json();
         })
         .then(content => {
-            console.log(content);
             JSON.stringify(content);
 
             const newElement = document.createElement('p');
@@ -88,7 +86,6 @@ async function handleSubmit(event) {
             const p = document.createElement('p');
             p.innerText = "Your trip is " + diffDays + " days away";
 
-
             columnDiv2.appendChild(newForecast);
             columnDiv2.appendChild(newTemp);
             columnDiv2.appendChild(p);
@@ -120,11 +117,13 @@ async function handleSubmit(event) {
             taskHeader.appendChild(taskInput);
 
             //create Button
-            const taskButton = document.createElement("button");
-            taskButton.innerHTML = "+";
-            taskButton.id = "add-task-btn";
+            const addBtn = document.createElement("button");
+            addBtn.id = "add-task-btn";
+            const buttonIcon = document.createElement("i");
+            buttonIcon.setAttribute("class", "fa fa-fw fa-plus");
+            addBtn.appendChild(buttonIcon);
 
-            taskHeader.appendChild(taskButton);
+            taskHeader.appendChild(addBtn);
 
             // create tasker-header div
             const taskBody = document.createElement('div');
@@ -135,7 +134,6 @@ async function handleSubmit(event) {
             taskBody.appendChild(taskBodyUl);
             task.appendChild(taskBody);
             rowdiv.appendChild(columnDiv2);
-
 
             (function() {
                 'use strict';
@@ -180,12 +178,16 @@ async function handleSubmit(event) {
                         taskVal = document.createTextNode(this.taskInput.value);
                         //DELETE BUTTON
                         taskBtn = document.createElement("button");
+                        //TRASH ICON
+                        taskTrsh = document.createElement("i");
+                        taskTrsh.setAttribute("class", "fas fa-trash-alt");
                         //INSTERT TRASH CAN INTO BUTTON
                         taskBtn.appendChild(taskTrsh);
 
                         //APPEND ELEMENTS TO TASKLI
                         taskLi.appendChild(taskChkbx);
                         taskLi.appendChild(taskVal);
+                        // taskLi.appendChild(taskTrsh);
                         taskLi.appendChild(taskBtn);
 
                         //ADD TASK TO TASK LIST
@@ -231,13 +233,11 @@ async function handleSubmit(event) {
                 tasker.init();
             }());
 
-
         })
         .catch(error => {
             console.error("error", error)
         })
 }
-
 
 export {
     handleSubmit

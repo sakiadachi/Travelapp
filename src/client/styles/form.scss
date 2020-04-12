@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-$font-stack: 'Open Sans', sans-serif;
-$font-family-sansserif: 'Open Sans', sans-serif;
+$font-stack: 'Montserrat', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
-$fontsize: 16px;
-$main: #f1f1f1;
-$primary: #fff;
-$grey: #cdcdcd;
-$secondary: #d21d1d;
+$fontsize: 1em;
+$borderstyle: 2px solid rgb(206, 206, 206);
+$main: #f7f3e9;
+$enable-responsive-font-sizes: true;
+
+a{
+    color: $textcolor;
+}
 
 .p-4{
     display: flex;
@@ -23,12 +26,37 @@ $secondary: #d21d1d;
     padding: 10px 10px;
     border-bottom: 1px solid $textcolor;
 }
+
 .row-bw {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     font-size: 1.5em;
     padding: 0px;
+}
+
+.form-date,
+.form-location {
+    text-align: center;
+}
+
+/* input */
+label {
+    margin-right: 10px;
+}
+
+input[type=text],
+input#date {
+    border: none;
+    border-bottom: 2px solid red;
+    background-color: #fff;
+}
+
+input#location {
+    color: $textcolor;
+    margin-bottom: 10px;
+    width: 170px;
+    background-color: #fff;
 }
 
 @media (min-width:600px) {
@@ -47,11 +75,21 @@ $secondary: #d21d1d;
         padding: 20px 10px;
         border-bottom: 1px solid $textcolor;
     }
+
+    .row-bw {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 1.5em;
+        padding: 0px;
+    }
+
     input#location {
         color: $textcolor;
         margin-bottom: 10px;
-        width: 250px;
+        width: 200px;
     }
+
     .row-bw {
         display: flex;
         flex-direction: row;
@@ -59,35 +97,8 @@ $secondary: #d21d1d;
         font-size: 1.5em;
         padding: 0px 30px;
     }
-
 }
 
-
-.form-date,
-.form-location {
-    text-align: center;
-}
-
-/* input */
-label {
-    margin-right: 10px;
-}
-input[type=text],
-input#date {
-    border: none;
-    border-bottom: 2px solid red;
-    background-color: $main;
-}
-
-input#location {
-    color: $textcolor;
-    margin-bottom: 10px;
-    width: 150px;
-    background-color: $main;
-}
-
-
-/* put Hover state later*/
 button{
     color: $textcolor;
     font-size: 1em;
@@ -96,19 +107,15 @@ button{
     padding: 0.2em 0.8em 0.2em 0.8em ;
 }
 
-
 button#form-submit {
     width: 10em;
     margin-top: 20px;
     background-color: #fff;
-    
-
 }
+
 button#form-submit:hover{
     text-decoration: underline 2px blue;
-
 }
-
 
 .btn {
     border: 0;
@@ -117,50 +124,46 @@ button#form-submit:hover{
     margin-bottom: 10px;
 }
 
-
 .center {
     text-align: center;
 }
 
-
-
- /* toDo list */
+/* toDo list */
 
 $primary: #fff;
 $grey: #cdcdcd;
 $secondary: #d21d1d;
 
 %reset {
-	margin: 0;
-	padding: 0;
-	border: none;
-	outline: none;
-	background: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
 }
 
 %transition {
-	transition: all 0.2s ease;
-	-webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
 }
 
 
-
-/*PEN STYLES*/
+/*ToDol list STYLES*/
 .tasker {
-	max-width: 400px;
-	margin: 10px 0px;
-	.error {
-		display: none;
-		text-decoration: underline 2px rgba(237, 28, 36, 0.7);
-		color: red;
-		padding: 14px;
-		margin-bottom: 10px;
-		border-radius: 5px;
-		text-align: left;
-	}
+    max-width: 400px;
+    margin: 10px 0px;
+    .error {
+        display: none;
+        text-decoration: underline 2px rgba(237, 28, 36, 0.7);
+        color: red;
+        padding: 14px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        text-align: left;
+    }
 
-	ul {
-		@extend %reset;
+    ul {
+        @extend %reset;
         
         li{
             list-style: none;
@@ -168,78 +171,78 @@ $secondary: #d21d1d;
         }
     }
 
-	li,
-	.error,
-	button,
-	input {
-		@extend %reset;
+    li,
+    .error,
+    button,
+    input {
+        @extend %reset;
         font: 18px/1.25em $font-family-monospace;
     }
     
 }
 
 .tasker-header {
-	display: inline-flex;
-	background: $primary;
-	justify-content: space-between;
-	width: 100%;
-	input,
-	button {
-		box-sizing: border-box;
-		font-size: 1em;
-		padding: 5px 10px;
-	}
+    display: inline-flex;
+    background: $primary;
+    justify-content: space-between;
+    width: 100%;
+    input,
+    button {
+        box-sizing: border-box;
+        font-size: 1em;
+        padding: 5px 10px;
+    }
 
-	input {
+    input {
         color: rgb(70, 70, 70);
-		flex-grow: 2;
-	}
+        flex-grow: 2;
+    }
 
-	button {
+    button {
         @extend %transition;
         color: #fff;
-		background: $secondary;
-		border-left: 1px solid ($secondary * 1.05);
-		&:hover {
-			background: $secondary * 1.1;
-		}
-	}
+        background: $secondary;
+        border-left: 1px solid ($secondary * 1.05);
+        &:hover {
+            background: $secondary * 1.1;
+        }
+    }
 }
 
 .tasker-body {
-	.task {
-		display: block;
-		position: relative;
-		padding: 5px 40px 5px 14px;
-		border-bottom: 1px dotted $textcolor;
-		&:last-child {
-			border-bottom: none;
-		}
-
-		&:hover > button {
-			opacity: 1;
-		}
-
-		&.completed {
-			color: $grey;
-			text-decoration: line-through;
-		}
-
-		input {
-			margin-right: 10px;
+    .task {
+        display: block;
+        position: relative;
+        padding: 5px 40px 5px 14px;
+        border-bottom: 1px dotted $textcolor;
+        &:last-child {
+            border-bottom: none;
         }
 
-		button {
-			@extend %transition;
-			color: $grey;
-			margin: 14px;
+        &:hover > button {
+            opacity: 1;
+        }
+
+        &.completed {
+            color: $grey;
+            text-decoration: line-through;
+        }
+
+        input {
+            margin-right: 10px;
+        }
+
+        button {
+            @extend %transition;
+            color: $grey;
+            margin: 14px;
             position: absolute;
-			top: 0;
-			right: 0;
-			opacity: 0;
-			&:hover {
-				color: #ed1c24;
-			}
-		}
-	}
+            top: 0;
+            right: 0;
+            opacity: 0;
+            &:hover {
+                color: #ed1c24;
+            }
+        }
+    }
 }

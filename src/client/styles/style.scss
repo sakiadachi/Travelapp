@@ -5,10 +5,7 @@ $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
 $main: #f1f1f1;
-$h2: 700;
-$h3: 600;
 $enable-responsive-font-sizes: true;
-
 
 
 body{
@@ -20,24 +17,18 @@ body{
     font-family: $font-stack;
     color: $textcolor;
     margin: 0;
-    padding: 0px;
+    padding: 0;
     background: #f1f1f1;
 	margin-top: 1rem;
-    
 }
 
-/* Header */
 header{
     grid-area: 1 / 1 / 2 / 4;
-
 }
 
 #entry{
     grid-area: 3 / 1 / 4 / 4;
-
 }
-
-
 
 footer{
     grid-area: 4 / 1 / 5 / 4;
@@ -51,31 +42,17 @@ footer{
         display: grid;
         grid-template-columns: 30px 1fr 30px;
         grid-template-rows: 100px 120px 1fr 0.5fr;
-        justify-content: center;
-        font-family: $font-stack;
-        color: $textcolor;
-        margin: 0;
-        padding: 0px;
-        background: #f1f1f1;
-        margin-top: 1rem;
-        
     }
-    
-    
-    /* Header */
+
     header{
         grid-area: 1 / 1 / 2 / 4;
-    
     }
     
     #entry{
         grid-area: 3 / 1 / 4 / 4;
-    
     }
 
     footer{
         grid-area: 4 / 1 / 5 / 4;
-        display: block;
-        text-align: center;
     }
 }

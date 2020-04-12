@@ -4,28 +4,21 @@ $font-stack: 'Montserrat', sans-serif;
 $font-family-monospace: 'Roboto Mono', monospace;
 $textcolor: #333;
 $fontsize: 1em;
-$borderstyle: 2px solid rgb(206, 206, 206);
 $main: #f7f3e9;
-$h2: 700;
-$h3: 600;
 $enable-responsive-font-sizes: true;
 
 /* Header */
 .navbar {
     padding: 10px 30px 10px 30px;
-    // background-color: $main;
 }
-
 
 .pos-f-t {
     border-bottom: 1px solid $textcolor;
-    // margin-bottom: 40px;
 }
 
 a.navbar-brand {
     font-size: 1.2em;
     color: $textcolor;
-    // position: left 30px;
 }
 
 /* humbargar icon */
