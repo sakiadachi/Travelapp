@@ -12,7 +12,7 @@ body{
     width: 100%;
     display: grid;
     grid-template-columns: 5px 1fr 5px;
-    grid-template-rows: 100px 130px 1fr 0.5fr;
+    grid-template-rows: 100px 200px 1fr 0.5fr;
     justify-content: center;
     font-family: $font-stack;
     color: $textcolor;
@@ -34,6 +34,7 @@ footer{
     grid-area: 4 / 1 / 5 / 4;
     display: block;
     text-align: center;
+    padding: 10px;
 }
 
 @media (min-width:600px) {
