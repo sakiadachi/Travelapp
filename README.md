@@ -1,5 +1,6 @@
 # Travel Planning App Project
-Building a travel planner app that shows you a location's picture, weather forecast and remaining days until a trip. Main task here was to set up webpack for an app and working with APIs through server side code and updating UI with the data from three different APIs. [Udacity Frontend developer nanodegree course](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011)
+Building a travel planner app that shows you a location's picture, weather forecast and remaining days until a trip. Main task here was to set up webpack for an app and working with APIs through server side code and updating UI with the data from three different APIs. For Extend Options of this project, ToDo list is added for the entry.
+[Udacity Frontend developer nanodegree course](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011)
 
 ## API
 This application gets information from three APIs.
