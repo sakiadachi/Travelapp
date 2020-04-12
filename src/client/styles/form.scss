@@ -40,6 +40,16 @@ a{
     text-align: center;
 }
 
+#form-submit {
+    width: 10em;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+#form-submit:hover {
+    text-decoration: underline 2px solid blue ;
+}
+
 /* input */
 label {
     margin-right: 10px;
@@ -107,15 +117,6 @@ button{
     padding: 0.2em 0.8em 0.2em 0.8em ;
 }
 
-button#form-submit {
-    width: 10em;
-    margin-top: 20px;
-    background-color: #fff;
-}
-
-button#form-submit:hover{
-    text-decoration: underline 2px blue;
-}
 
 .btn {
     border: 0;
