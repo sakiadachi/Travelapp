@@ -41,6 +41,7 @@ a{
     justify-content: center;
     padding: 10px 10px;
     border-bottom: 1px solid $textcolor;
+    line-height: 2.5em;
 }
 
 .row-bw {
@@ -56,45 +57,24 @@ a{
     text-align: center;
 }
 
-.form-submit {
-    width: 10em;
-    margin-top: 20px;
-    background-color: #fff;
-    -webkit-appearance : none;
-}
-
-button{
-    color: $textcolor;
-    font-size: 1em;
-    border: none;
-    border-style: none;
-    border-radius: 0;
-    padding: 0.2em 0.8em 0.2em 0.8em ;
-    -webkit-appearance : none;
-}
-
-.form-submit:hover {
-    text-decoration: underline 2px solid blue !important;
-}
-
-
 /* input */
 label {
     margin-right: 10px;
 }
 
-input[type=text],
-input#date {
+#date {
     border: none;
     border-bottom: 2px solid red;
     background-color: #fff;
 }
 
-input#location {
+#location {
     color: $textcolor;
     margin-bottom: 10px;
-    width: 170px;
+    width: 220px;
     background-color: #fff;
+    border: none;
+    border-bottom: 2px solid red;
 }
 
 @media (min-width:600px) {
@@ -239,5 +219,17 @@ input#location {
                 color: #ed1c24;
             }
         }
+    }
+}
+
+#form-submit{
+    padding: 0.2em 0.8em 0.2em 0.8em ;
+    &:hover{
+        background: rgb(206, 206, 206) ;
+    }
+}
+input{
+    &:hover{
+        background: rgb(206, 206, 206)  !important;
     }
 }

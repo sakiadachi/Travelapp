@@ -1,8 +1,8 @@
 import './styles/reset.scss'
 import './styles/style.scss'
 import './styles/header.scss'
-import './styles/form.scss'
 import './styles/entry.scss'
+import './styles/form.scss'
 
 import { handleSubmit } from './js/formHandler'
 
