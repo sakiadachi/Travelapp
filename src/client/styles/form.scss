@@ -62,20 +62,20 @@ a{
     background-color: #fff;
     -webkit-appearance : none;
 }
-.form-submit:hover {
-    text-decoration: underline 2px solid blue;
-}
-
 
 button{
     color: $textcolor;
     font-size: 1em;
-    border: 0;
+    border: none;
+    border-style: none;
     border-radius: 0;
     padding: 0.2em 0.8em 0.2em 0.8em ;
     -webkit-appearance : none;
 }
 
+.form-submit:hover {
+    text-decoration: underline 2px solid blue !important;
+}
 
 
 /* input */
